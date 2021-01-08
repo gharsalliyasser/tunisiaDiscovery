@@ -1,26 +1,32 @@
 import Vue from 'vue'
-import vuetify from './plugins/vuetify';
-import "vuetify/dist/vuetify.min.css";
-import footer from './components/Footer/footer.vue';
-import navbar from './components/Navbar/navbar.vue';
-
-
-
 import App from './App.vue'
+import vuetify from './plugins/vuetify';
+import VueRouter from 'vue-router'
 
 
+import Home from './views/Home';
+import About from './views/About';
+import Contact from './views/Contact';
 
 
-
+Vue.use(VueRouter)
 
 
 
 Vue.config.productionTip = false
 
+const router = new VueRouter({
+  routes: [
+    { path: '/', component: Home },
+    { path: '/about', component: About },
+    { path: '/contact', component: Contact },
+    
+  ],
+  mode: 'hash'
+})
+
 new Vue({
+  router,
   vuetify,
-  footer,
-  navbar,
- 
   render: h => h(App)
 }).$mount('#app')
