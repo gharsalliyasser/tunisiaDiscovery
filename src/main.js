@@ -1,17 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
+
 import VueRouter from 'vue-router'
-
-
 import Home from './views/Home';
 import About from './views/About';
 import Contact from './views/Contact';
 
 
 Vue.use(VueRouter)
-
-
 
 Vue.config.productionTip = false
 
@@ -30,3 +27,4 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
