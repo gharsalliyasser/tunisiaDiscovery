@@ -1,16 +1,31 @@
 <template>
-    <div class="app">
+  <v-app>
+    <v-app-bar flat max-height="65">
+      <Navbar />
+    </v-app-bar>
+<div class="app">
         <carousel >
             <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
                 <img :src="slide" :alt="slide">
             </carousel-slide>
         </carousel>
     </div>    
+    <router-view></router-view>
+
+    <v-footer>
+      <Footer />
+    </v-footer>
+  </v-app>
 </template>
+
+
+
 
 <script>
 import Carousel from './components/Slideshow/Carousel';
 import CarouselSlide from './components/Slideshow/CarouselSlide';
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 export default {
     data(){
         return {
@@ -29,7 +44,11 @@ export default {
     components : {
         Carousel : Carousel,
         CarouselSlide : CarouselSlide,
-    }
+      
+    Navbar,
+    Footer,
+
+    },
 }
 </script>
 
