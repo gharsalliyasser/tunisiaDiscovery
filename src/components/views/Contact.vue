@@ -22,9 +22,7 @@
         </v-form>
       </v-container>
     </div>
-    <div>
-     >
-    </div>
+    
   </v-content>
 </template>
 
