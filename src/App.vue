@@ -24,8 +24,8 @@
 <script>
 import Carousel from './components/Slideshow/Carousel';
 import CarouselSlide from './components/Slideshow/CarouselSlide';
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/navbar";
+import Footer from "./components/Footer/footer";
 export default {
     data(){
         return {

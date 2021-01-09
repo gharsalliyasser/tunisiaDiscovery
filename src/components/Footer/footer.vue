@@ -9,12 +9,12 @@
         </v-card-text>
         <v-card-text
           class="pt-0"
-        >here we gonna put some paragraphs about the site </v-card-text>
+        >Tunisia Discovery is a website dedicated to tourists interested in Tunisia, we provide them with a lot of services such as booking a hotel room or getting to know the most interesting places that they can visit </v-card-text>
         <v-divider></v-divider>
         
         <v-card-text>
           {{ new Date().getFullYear() }} —
-          <strong> Tunisia Discovery footer </strong>
+          <strong> Tunisia Discovery </strong>
         </v-card-text>
 
 <v-toolbar-items class="hidden-xs-only">
