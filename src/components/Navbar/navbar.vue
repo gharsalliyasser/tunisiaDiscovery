@@ -31,12 +31,8 @@
           </v-list>
         </v-menu>
       </div>
-       
-            
-           
             <v-spacer></v-spacer>
             <v-btn color="blue lighten-3" router-link to="/Signin"> SIGN IN</v-btn>
-            
             <v-btn color="blue lighten-3" router-link to="/Signup"> SIGN UP </v-btn>
     </v-toolbar>
   </v-container>
