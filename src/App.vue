@@ -49,6 +49,6 @@ data: () => ({
   text-align: center;
   color: #090a0a;
   margin-top: 60px;
-  background-color: rgb(143, 247, 129);
+  background-color: rgb(181, 245, 245);
 }
 </style>
