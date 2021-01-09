@@ -4,8 +4,8 @@
       <v-card flat class="text-center">
         <v-card-text>
           
-            
-          
+            information///////////////////// 
+        
         </v-card-text>
         <v-card-text
           class="pt-0"
@@ -13,15 +13,14 @@
         <v-divider></v-divider>
         
         <v-card-text>
-          
           <strong> Tunisia Discovery footer </strong>
         </v-card-text>
 
-<v-toolbar-items class="hidden-xs-only">
-       
-        <v-btn text><router-link to="/about">About</router-link></v-btn>
+      <v-toolbar-items class="hidden-xs-only">
+       <v-btn text><router-link to="/about">About</router-link></v-btn>
         <v-btn text><router-link to="/contact">Contact</router-link></v-btn>
       </v-toolbar-items>
+
       <div class="hidden-sm-and-up">
         <v-menu offset-y>
           <template>
@@ -50,7 +49,6 @@
 export default {
   name: "Footer",
   data: () => ({
-    
   })
 };
 </script>

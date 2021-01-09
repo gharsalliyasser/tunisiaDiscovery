@@ -5,8 +5,8 @@
       <v-row align="end" class="lightbox white--text pa-2 fill-height">
         <v-col>
           <v-container>
-            <div class="headline">Contact Us</div>
-          </v-container>
+        <h1 class="text-center"> Contact Us </h1>      
+     </v-container>
         </v-col>
       </v-row>
   
