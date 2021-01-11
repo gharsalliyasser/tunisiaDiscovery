@@ -37,9 +37,6 @@
         </v-menu>
       </div>
       
-            
-
-
       </v-card>
     </v-footer>
   </v-container>
@@ -52,4 +49,3 @@ export default {
   })
 };
 </script>
-
