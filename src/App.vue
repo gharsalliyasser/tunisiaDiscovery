@@ -1,7 +1,10 @@
 <template>
   <v-app>
+      
     <v-app-bar flat max-height="65">
       <Navbar />
+      <bg />
+      <picker />
     </v-app-bar>
 <div class="app">
         <carousel >
@@ -26,6 +29,8 @@ import Carousel from './components/Slideshow/Carousel';
 import CarouselSlide from './components/Slideshow/CarouselSlide';
 import Navbar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
+// import bg from "./design/bg";
+// import picker from "./components/Hotels/Calendar"
 export default {
     data(){
         return {
@@ -45,8 +50,10 @@ export default {
         Carousel : Carousel,
         CarouselSlide : CarouselSlide,
       
+    // picker,
     Navbar,
     Footer,
+    // bg,
 
     },
 }

@@ -4,9 +4,9 @@
       <v-toolbar-title> Tunisia Discovery </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn text><router-link to="/"> Destinations </router-link></v-btn>
-        <v-btn text><router-link to="/about"> Hotels </router-link></v-btn>
-        <v-btn text><router-link to="/">Events </router-link></v-btn>
+        <v-btn text><router-link to="/Hotels/hover"> Destinations </router-link></v-btn>
+        <v-btn text><router-link to="/Hotels/x"> Hotels </router-link></v-btn>
+        <v-btn text><router-link to="/Hotels/card2">Events </router-link></v-btn>
         <v-btn text><router-link to="/"> Cars </router-link></v-btn>
 
       </v-toolbar-items>

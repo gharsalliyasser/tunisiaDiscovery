@@ -34,3 +34,11 @@
     </div>
   </v-content>
 </template>
+curl --request POST \
+         --url 'https://api.makcorps.com/auth' \
+         --header 'Content-Type: application/json' \
+         --data '{
+              "username":"Khalil",
+              "password":"987654321123456789"
+      }'
+  
