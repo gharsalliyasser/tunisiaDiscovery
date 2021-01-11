@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Places from '@/components/Places'
 import Hotels from '@/components/Hotels'
 import Events from '@/components/Events'
+import Signup from '@/components/Signup'
 
 
 Vue.use(Router)
@@ -12,7 +13,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'Home',
       component: Home
     },
@@ -36,6 +37,16 @@ export default new Router({
         path: '/events',
         name: 'Events',
         component: Events
-      }
+      },
+      {
+        path: '/signup',
+        name: 'Signup',
+        component: Signup
+      },
+      {
+        path: '/signin',
+        name: 'Signin',
+        component: Signin
+      },
   ]
 })
