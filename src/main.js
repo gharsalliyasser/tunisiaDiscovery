@@ -3,17 +3,24 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 
 import VueRouter from 'vue-router';
-import Home from './views/Home';
-import About from './views/About';
-import Contact from './views/Contact';
-import picker from './components/Hotels/Calendar';
-// import datepicker from "./components/Hotels/main";
-import card from './components/Hotels/Cards';
-// import card2 from './components/Hotels/cards2';
-import hover from './components/Hotels/hover';
-import x from './components/Hotels/x';
+import home from './components/home/home';
+import about from './components/views/about';
+import contact from './components/views/contact';
+import picker from './components/hotels/calendar';
+// import datepicker from "./components/hotels/main";
+import card from './components/hotels/cards';
+// import card2 from './components/hotels/cards2';
+import hover from './components/hotels/hover';
+import x from './components/hotels/x';
+import navbar from './components/navbar/navbar';
+import footer from './components/footer/footer';
+import signup from './components/signup/signup';
+import signin from './components/signin/signin';
+// import events from './components/events/events';
+import filter from './components/hotels/filter';
 
 
+Vue.component('navbar', navbar)
 
 Vue.use(VueRouter)
 
@@ -21,17 +28,22 @@ Vue.config.productionTip = false
 
 const router = new VueRouter({
   routes: [
-    { path: '/Home', component: Home },
-    { path: '/about', component: About },
-    { path: '/contact', component: Contact },
+    { path: '/home', component: home },
+    { path: '/about', component: about },
+    { path: '/contact', component: contact },
+    // { path: '/navbar', component: navbar },
+    { path: '/footer', component: footer},
+    { path: '/signup', component: signup},
+    { path: '/signin', component: signin},
     { path: '/picker', component: picker },
     // {path: '/Hotels/datepicker', component: datepicker },
-    { path: '/Hotels/Cards', component: card },
-    { path: '/Hotels/x', component: x }, 
-    {path: '/Hotels/Cards', component: hover }
+    { path: '/hotels', component: card },
+    { path: '/hotels/x', component: x }, 
+    {path: '/hotels/cards', component: hover },
+    {path: '/hotels/filter', component: filter },
     
   ],
-  mode: 'hash'
+  mode: 'history'
 })
 
 new Vue({

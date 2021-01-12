@@ -4,9 +4,9 @@
             <v-layout row wrap>
                 <v-flex xs12 sm6 md4 lg3 v-for="hotel in hotels" :key="hotel.id">
                     <v-card  class="text-xs-center ma-3">
-                        <v-responsive class="pt-4">
-                            {{hotel.image_url}}
-                        </v-responsive>
+                        <img class="img"
+                            :src=hotel.image_url
+                        />
                         <v-card-text>
                             <div class="name">{{hotel.name}}</div>
                             <div class="black--text">{{hotel.description}}</div>
@@ -74,7 +74,12 @@ export default {
 </script>
 <style>
 .name {
-    color : rgb(184, 187, 10);
+    color : rgb(218, 188, 19);
     font-size: 20px;
+}
+.img {
+    max-width: 100%;
+        max-height: 100%;
+        display: block;
 }
 </style>
