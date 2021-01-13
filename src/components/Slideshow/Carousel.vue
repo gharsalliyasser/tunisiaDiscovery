@@ -1,12 +1,13 @@
 <template>
     <div class="carousel"  @keydown="checkSlide($event)" tabindex="0">
         <slot></slot>
-        <button @click.prevent="next" class="btn btn-next"><i class="fa fa-angle-right">Next</i></button>
-        <button @click.prevent="prev" class="btn btn-prev"><i class="fa fa-angle-left"></i>Previous</button>
+        <button @click="next" class="btn btn-next"><i class="fa fa-angle-right">Next</i></button>
+        <button @click="prev" class="btn btn-prev"><i class="fa fa-angle-left"></i>Previous</button>
     </div>
 </template>
 <script>
 export default {
+    name: "carousel",
     data () {
         return {
             index : 0,

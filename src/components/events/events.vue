@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "Events",
+  name: "events",
   data() {
     return {
       images: [

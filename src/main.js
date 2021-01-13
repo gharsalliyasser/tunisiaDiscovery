@@ -16,13 +16,29 @@ import navbar from './components/navbar/navbar';
 import footer from './components/footer/footer';
 import signup from './components/signup/signup';
 import signin from './components/signin/signin';
-// import events from './components/events/events';
+import events from './components/events/events';
 import filter from './components/hotels/filter';
 
+// import fr from 'vuetify/es5/locale/fr'
 
-Vue.component('navbar', navbar)
+// Vue.component('navbar', navbar)
+// {
+//   methods: {
+//     changeLocale () {
+//       this.$vuetify.lang.current = 'fr'
+//     },
+//   },
+// })
+
+// export default new Vuetify({
+//   lang: {
+//     locales: {fr},
+//     current: 'en',
+//   },
+// })
 
 Vue.use(VueRouter)
+
 
 Vue.config.productionTip = false
 
@@ -31,12 +47,12 @@ const router = new VueRouter({
     { path: '/home', component: home },
     { path: '/about', component: about },
     { path: '/contact', component: contact },
-    // { path: '/navbar', component: navbar },
+    { path: '/navbar', component: navbar },
     { path: '/footer', component: footer},
     { path: '/signup', component: signup},
     { path: '/signin', component: signin},
     { path: '/picker', component: picker },
-    // {path: '/Hotels/datepicker', component: datepicker },
+    {path: '/events', component: events },
     { path: '/hotels', component: card },
     { path: '/hotels/x', component: x }, 
     {path: '/hotels/cards', component: hover },

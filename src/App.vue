@@ -5,11 +5,12 @@
       <Navbar />
     </v-app-bar>
     <div class="app">
-        <carousel >
+        <events />
+        <!-- <carousel >
             <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
                 <img :src="slide" :alt="slide">
             </carousel-slide>
-        </carousel>
+        </carousel> -->
     </div>    
     <router-view></router-view>
 
@@ -23,8 +24,8 @@
 
 
 <script>
-import carousel from './components/slideshow/carousel';
-import carouselslide from './components/slideshow/carouselslide';
+// import carousel from './components/slideshow/carousel';
+// import carouselslide from './components/slideshow/carouselslide';
 import navbar from "./components/navbar/navbar";
 import footer from "./components/footer/footer";
 // import bg from "./design/bg";
@@ -46,7 +47,7 @@ export default {
     },
     components : {
         // carousel : carousel,
-        // carouselSlide : carouselSlide,
+        // carouselslide : carouselslide,
       
     // picker,
     navbar,
