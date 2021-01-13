@@ -12,14 +12,13 @@
 
     <div class="app">
       <carousel>
-        <carouselslide
-          v-for="slide in slides"
-          :key="slide"
-          class="carousel-slider"
-        >
-          <img :src="slide" :alt="slide" />
-        </carouselslide>
+        <carousel >
+            <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
+                <img :src="slide" :alt="slide">
+            </carousel-slide>
+        </carousel>
       </carousel>
+        <carouselslide />
     </div>
     
     <div>
@@ -46,8 +45,8 @@
 </template>
 
 <script>
-import carousel from '../slideshow/carousel';
-import carouselslide from '../slideshow/carouselslide';
+import Carousel from '../Slideshow/Carousel';
+import CarouselSlide from '../Slideshow/CarouselSlide';
 export default {
   name: "home",
   data() {
@@ -65,8 +64,8 @@ export default {
     };
   },
   components: {
-     carousel,
-   carouselslide,
+     Carousel : Carousel,
+        CarouselSlide : CarouselSlide,
   },
 };
 </script>

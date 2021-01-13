@@ -8,6 +8,7 @@
 
 <script>
 export default {
+    name: "carouselslide",
     data() {
         return {
             index  : 0,

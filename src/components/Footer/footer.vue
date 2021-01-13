@@ -9,10 +9,11 @@
         </v-card-text>
         <v-card-text
           class="pt-0"
-        >here we gonna put some paragraphs about the site //////////////////////////////////////////////////////////////////////////////////////// </v-card-text>
+        >here we gonna put some paragraphs about the site </v-card-text>
         <v-divider></v-divider>
         
         <v-card-text>
+          {{ new Date().getFullYear() }} —
           <strong> Tunisia Discovery footer </strong>
         </v-card-text>
 
@@ -44,7 +45,7 @@
 
 <script>
 export default {
-  name: "footer",
+  name: "Footer",
   data: () => ({
   })
 };

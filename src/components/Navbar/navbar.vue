@@ -2,14 +2,15 @@
 
   <v-container>
     <v-toolbar flat class="mainHeader">
-      
+      <v-toolbar-title> Tunisia Discovery Project </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn text><router-link to="/home"> Home </router-link></v-btn>
-        <v-btn text><router-link to="/places"> Places </router-link></v-btn>
+        <v-btn text><router-link to="/"> Destinations </router-link></v-btn>
         <v-btn text><router-link to="/hotels"> Hotels </router-link></v-btn>
-        <v-btn text><router-link to="/events"> Events </router-link></v-btn>
-        <v-btn text><router-link to="/hotels/filter"> Cars </router-link></v-btn>
+        <v-btn text><router-link to="/events">Events </router-link></v-btn>
+        <v-btn text><router-link to="/cars"> Cars </router-link></v-btn>
+
       </v-toolbar-items>
 
       <div class="hidden-sm-and-up">
@@ -29,6 +30,9 @@
           </v-list>
         </v-menu>
       </div>
+       <v-toolbar-side-icon></v-toolbar-side-icon>
+            <v-toolbar-title>{{appTitle}}</v-toolbar-title>
+           
             <v-spacer></v-spacer>
             <span>Not a member yet?</span>
             <v-spacer></v-spacer>
@@ -40,7 +44,7 @@
 
 <script>
 export default {
-  name: "navbar",
+  name: "Navbar",
   data: () => ({
   })
 };

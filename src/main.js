@@ -12,8 +12,8 @@ import card from './components/hotels/cards';
 // import card2 from './components/hotels/cards2';
 import hover from './components/hotels/hover';
 import x from './components/hotels/x';
-import navbar from './components/navbar/navbar';
-import footer from './components/footer/footer';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 import signup from './components/signup/signup';
 import signin from './components/signin/signin';
 import events from './components/events/events';
@@ -21,7 +21,7 @@ import filter from './components/hotels/filter';
 
 // import fr from 'vuetify/es5/locale/fr'
 
-// Vue.component('navbar', navbar)
+Vue.component('navbar', Navbar)
 // {
 //   methods: {
 //     changeLocale () {
@@ -47,8 +47,8 @@ const router = new VueRouter({
     { path: '/home', component: home },
     { path: '/about', component: about },
     { path: '/contact', component: contact },
-    { path: '/navbar', component: navbar },
-    { path: '/footer', component: footer},
+    { path: '/navbar', component: Navbar },
+    { path: '/footer', component: Footer},
     { path: '/signup', component: signup},
     { path: '/signin', component: signin},
     { path: '/picker', component: picker },
