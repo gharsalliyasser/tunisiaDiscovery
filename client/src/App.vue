@@ -2,20 +2,15 @@
   <v-app>
       
     <v-app-bar flat max-height="65">
-      <Navbar />
+      <navbar />
     </v-app-bar>
     <div class="app">
         <events />
-        <!-- <carousel >
-            <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
-                <img :src="slide" :alt="slide">
-            </carousel-slide>
-        </carousel> -->
     </div>    
     <router-view></router-view>
 
     <v-footer>
-      <Footer />
+    <footer />
     </v-footer>
   </v-app>
 </template>
@@ -24,10 +19,8 @@
 
 
 <script>
-// import Carousel from './components/Slideshow/Carousel';
-// import CarouselSlide from './components/Slideshow/CarouselSlide';
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import footer from "./components/Footer/footer";
+import navbar from "./components/Navbar/navbar";
 export default {
     data(){
         return {
@@ -43,15 +36,9 @@ export default {
             ]
         }
     },
-    components : {
-        // Carousel : Carousel,
-        // CarouselSlide : CarouselSlide,
-      
-    // picker,
-    Navbar,
-    Footer,
-    // bg,
-
+    Components : {    
+        footer,
+    navbar,
     },
 }
 </script>

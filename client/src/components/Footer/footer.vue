@@ -4,8 +4,7 @@
       <v-card flat class="text-center">
         <v-card-text>
           
-            information///////////////////// 
-        
+            information
         </v-card-text>
         <v-card-text
           class="pt-0"
