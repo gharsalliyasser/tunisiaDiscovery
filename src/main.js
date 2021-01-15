@@ -6,8 +6,8 @@ import VueRouter from 'vue-router';
 import home from './components/home/home';
 import about from './components/views/about';
 import contact from './components/views/contact';
-import picker from './components/hotels/calendar';
-// import datepicker from "./components/hotels/main";
+// import picker from './components/hotels/calendar';
+import datepicker from "./components/hotels/main";
 import card from './components/hotels/cards';
 // import card2 from './components/hotels/cards2';
 import hover from './components/hotels/hover';
@@ -51,7 +51,7 @@ const router = new VueRouter({
     { path: '/footer', component: Footer},
     { path: '/signup', component: signup},
     { path: '/signin', component: signin},
-    { path: '/picker', component: picker },
+    { path: '/picker', component: datepicker },
     {path: '/events', component: events },
     { path: '/hotels', component: card },
     { path: '/hotels/x', component: x }, 
