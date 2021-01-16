@@ -1,9 +1,10 @@
-//this the scema for the articles 
+const {
+    Schema,
+    model
+} = require('mongoose');
 
-const { Schema, model } = require('mongoose');
-
-const NewsShema = new Schema({
-    title : {
+const carShema = new Schema({
+    title: {
         type: 'string',
         required: true
     },
@@ -15,12 +16,16 @@ const NewsShema = new Schema({
         type: 'string',
         required: true
     },
+    price: {
+        type: 'number',
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now,
     }
-});
+})
 
-const News = model('anew', NewsShema);
+const car = model('car', carShema);
 
-module.exports = News;
+module.exports = car;

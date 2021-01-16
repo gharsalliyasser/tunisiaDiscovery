@@ -3,7 +3,7 @@
     <!-- event -->
     <v-row justify="space-around">
       <v-col cols="4" v-for="event in events" :key="event.id">
-        <div >
+        <div>
           <div>
             <h3>{{event.title}}</h3>
           </div>
