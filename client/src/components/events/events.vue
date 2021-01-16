@@ -2,8 +2,8 @@
   <v-container fluid>
     <!-- event -->
     <v-row justify="space-around">
-      <v-col cols="3">
-        <div v-for="event in events" :key="event.id">
+      <v-col cols="4" v-for="event in events" :key="event.id">
+        <div >
           <div>
             <h3>{{event.title}}</h3>
           </div>
@@ -16,11 +16,9 @@
 
           <div class="text-center">
             <div class="my-2">
-               <a :href="event.youtubeLink"  target="_blank">
-              <v-btn depressed color="primary">
-              watch video
-              </v-btn>
-               </a>
+              <a :href="event.youtubeLink" target="_blank">
+                <v-btn depressed color="primary">watch video</v-btn>
+              </a>
               <v-btn depressed color="primary">Buy Ticket</v-btn>
             </div>
           </div>
