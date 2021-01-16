@@ -6,7 +6,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn text><router-link to="/home"> Home </router-link></v-btn>
-        <v-btn text><router-link to="/"> Destinations </router-link></v-btn>
+        <v-btn text><router-link to="/Gallery"> Destinations </router-link></v-btn>
         <v-btn text><router-link to="/hotels"> Hotels </router-link></v-btn>
         <v-btn text><router-link to="/events">Events </router-link></v-btn>
         <v-btn text><router-link to="/cars"> Cars </router-link></v-btn>
