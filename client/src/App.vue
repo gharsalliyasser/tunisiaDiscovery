@@ -37,7 +37,7 @@ export default {
         }
     },
     Components : {    
-        footer,
+    footer,
     navbar,
     },
 }
