@@ -9,7 +9,7 @@
     <router-view></router-view>
 
     <v-footer>
-   <footer />
+   <Footer />
     </v-footer>
   </v-app>
 </template>
@@ -18,8 +18,8 @@
 
 
 <script>
-import navbar from "./layout/Navbar/navbar";
-import footer from "./layout/Footer/footer";
+import Navbar from "./layout/Navbar/navbar";
+import Footer from "./layout/Footer/footer";
 export default {
   data() {
     return {
@@ -35,11 +35,11 @@ export default {
       ],
     };
   },
-  Components: {
-    navbar,
-    footer,
-  },
-};
+  components: {
+    Navbar: Navbar,
+    Footer: Footer
+  }
+}
 </script>
 
 <style>
