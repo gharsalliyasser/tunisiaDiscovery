@@ -73,7 +73,7 @@ const router = new VueRouter({
             component: Gallery
         },
         {
-            path: '/hotels/filter',
+            path: '/filter',
             component: filter
         },
         {

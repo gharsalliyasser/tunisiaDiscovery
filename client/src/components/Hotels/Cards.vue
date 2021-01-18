@@ -2,9 +2,10 @@
 
     <v-container class="grey lighten-5 mb-6"    
       :key="align"
-     
     >
-    <datepicker />
+     <!-- <Picker /> -->
+    <Datepicker />
+    <!-- <Filter /> -->
       <v-row>
         <v-col
           v-for="hotel in hotels" :key="hotel.id" 
@@ -27,7 +28,7 @@
             class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-1 white--text"
             style="height: 100%;"
           >
-            {{hotel.name}}
+            {{hotel.title}}
           </div>
         </v-expand-transition>
         </v-img>
@@ -38,7 +39,7 @@
     color="primary"
           dark
           v-bind="attrs"
-          v-on="on">{{hotel.name}}</v-card-title>
+          v-on="on">{{hotel.title}}</v-card-title>
     </template>
         <span>You can reserve below</span>
     </v-tooltip>
@@ -78,26 +79,23 @@
         column
       >
         <v-chip>single room</v-chip>
-        
-          
-        <span>
-          {{hotel.single_room}} TND</span>
-         
+        <v-chip>{{hotel.single_room}} TND</v-chip>
+       <span class="my-4 subtitle-4 green--text" >All health measures are token*</span>
         <v-chip>double room</v-chip>
-        <span>{{hotel.double_room}} TND</span>
+        <v-chip>{{hotel.double_room}} TND</v-chip>
 
 
       </v-chip-group>
     </v-card-text>
 
     <v-card-actions>
-      <v-btn
+      <!-- <v-btn
         color="deep-purple lighten-2"
         text
         @click="reserve"
       >
         Reserve
-      </v-btn>
+      </v-btn> -->
       <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
       <v-btn
@@ -105,18 +103,27 @@
           dark
           v-bind="attrs"
           v-on="on"
-      >
-        Reserve
+      > Reserve
       </v-btn>
       </template>
       <span>Reserve</span>
     </v-tooltip>
+    <div>
+
+      <a :href="hotel.video_url" target="_blank">
+        <v-btn 
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"> watch video
+          </v-btn>
+      </a>
+    </div>
     </v-card-actions>
         </v-card>
         </v-hover>
         </v-col>
       </v-row>
-      
     </v-container>
 
 </template>
@@ -127,14 +134,20 @@
 }
 </style>
 <script>
-import datepicker from "./main"
+import Datepicker from "./main.vue"
+// import Picker from "./Calendar"
+// import Filter from "./filter"
+
   export default {
       name: "card",
-    data(){
+      method: {
+    WatchVideo() {},
+  },
+    data() {
         return {
             hotels: [
     {
-        name: "Four Seasons Hotel Tunis",
+        title: "Four Seasons Hotel Tunis",
         id: 1,
         city: "Tunis",
         address: "1057 La Marsa, Gammarth",
@@ -145,9 +158,10 @@ import datepicker from "./main"
         The hotel offers different bars and restaurants with local specialties and international menus. Enjoy also the restoring cabaret with its dancers and orchestra.`,
         single_room:520,
         double_room:740,
+        video_url: "https://www.youtube.com/watch?v=IuToJExQVh4 "
     },
     {
-        name: "Laico Tunis",
+        title: "Laico Tunis",
         id: 2,
         city: "Tunis",
         address: "Chabane El Bhouri av. Tunis 1080",
@@ -158,9 +172,10 @@ import datepicker from "./main"
         allying Business and Leisure is one of the top luxurious hotel in Tunisia.`,
         single_room:410,
         double_room:608,
+        video_url: "https://www.youtube.com/watch?v=SlqQ-Y3sjys"
     },
     {
-        name: "The Penthouse Suites Hotel",
+        title: "The Penthouse Suites",
         id: 3,
         city: "Tunis",
         address: "Medinat Radhoua av. Ariana",
@@ -173,7 +188,7 @@ import datepicker from "./main"
         double_room:430,
     },
     {
-        name: "El Mouradi Gammarth",
+        title: "El Mouradi Gammarth",
         id: 4,
         city: "Tunis",
         address: "B.P597 Gammarth، La Marsa 2070",
@@ -186,7 +201,7 @@ import datepicker from "./main"
         double_room:310,
     },
     {
-        name: "Ramada Plaza Tunis",
+        title: "Ramada Plaza Tunis",
         id: 5,
         city: "Tunis",
         address: "Les Cotes De Cathage, Gammarth",
@@ -199,7 +214,7 @@ import datepicker from "./main"
         double_room:530,
     },
     {
-        name: "Novotel Tunis Mohamed V",
+        title: "Novotel Tunis Mohamed V",
         id: 6,
         city: "Tunis",
         address: "Mohamed V av. Tunis 1002",
@@ -212,7 +227,7 @@ import datepicker from "./main"
         double_room:460,
     },
     {
-        name: "Carthage Thalasso Resort",
+        title: "Carthage Thalasso Resort",
         id: 7,
         city: "Tunis",
         address: "LES COTES DE CARTHAGE. BP720. Gammarth 2070",
@@ -225,7 +240,7 @@ import datepicker from "./main"
         double_room:400,
     },
     {
-        name: "Golden Tulip Carthage",
+        title: "Golden Tulip Carthage",
         id: 8,
         city: "Tunis",
         address: "Rue de la Republique, La Marsa 2078",
@@ -238,7 +253,7 @@ import datepicker from "./main"
         single_room:570,
         double_room:800,
     },
-    { name: "Anantara Sahara Tozeur Resort & Villas", 
+    { title: "Anantara Sahara Tozeur Resort & Villas", 
     id: 9,
     city: "Tozeur",
     stars: 5,
@@ -248,7 +263,7 @@ import datepicker from "./main"
     double_room:"577", 
     }, 
     { 
-    name: "Radisson Blu Palace Resort et Thalasso", 
+    title: "Radisson Blu Palace Resort et Thalasso", 
 id: 10, 
 city: "Djerba",
 stars: 5,
@@ -258,7 +273,7 @@ Conveniently located on the grounds, the deluxe Athénée Thalasso pampers guest
 single_room:"191", 
 double_room:"221", 
 },
-{ name: "Iberostar Mehari Djerba",
+{ title: "Iberostar Mehari Djerba",
  id: 11, 
 city: "Djerba",
 stars: 4,
@@ -269,7 +284,7 @@ The only problem? Like Ulysses, you won’t want to leave!
 `, 
 single_room:"91", 
 double_room:"135", },
-{ name: "Concorde Green Park Palace",
+{ title: "Concorde Green Park Palace",
 id: 12, 
 city: "Sousse",
 stars: 5,
@@ -277,7 +292,7 @@ image_url: "http://www.concorde-tunisia.com/En/image_resize.php?img=upload%2F148
 description:` Located near a fine sandy beach and very close to one of the most beautiful 36-hole golf courses in Tunisia and a few minutes away from the marina of Port El Kantaoui - Sousse, Concorde Green Park Palace is opening the doors for you of the majestic and luxury Arabo-Andalusian palace, enthroned in the middle of a 5 ha luxuriant garden where the palm trees stand majestically around the huge swimming pool and the edge of the beach. Adorned by its hanging gardens and extensive lawns, the hotel truly deserves its name.`, 
 single_room:"144", 
 double_room:"219", },
-{ name: "Sousse palace", 
+{ title: "Sousse palace", 
  id: 13, 
 city: "Sousse",
 address: "30 avenue Habib Bourguiba, 4000, Sousse - Tunisia", 
@@ -286,7 +301,7 @@ image_url: "https://media-cdn.tripadvisor.com/media/photo-s/0d/91/ba/26/sousse-p
 description:` Sousse Palace Hôtel & Spa 5* is a luxury hotel located in the heart of the old town of Sousse, the “Pearl of the Sahel” and one of Tunisia’s most vibrant towns, located just 87 miles from the capital Tunis. The hotel, founded in 1966 and fully renovated in 2016, has direct access to the beach and offers a total of 250 exquisitely decorated rooms which combine design and comfort, the ideal setting for a luxurious stay in Sousse for tourists and business travellers alike.`, 
 single_room:"144", 
 double_room:"219", },
-{ name: "The Sindbad", 
+{ title: "The Sindbad", 
  id: 14, 
 city: "Hammamet",
 address: "United Nations 8050 Hammamet, Tunisia",
@@ -297,7 +312,7 @@ of public facilities and rooms in 2008/2009/2013. The architectural style is a s
 and oriental, surrounded by a beautiful and lush garden.`, 
 single_room:"190", 
 double_room:"250", },
-{ name: "Hasdrubal Thalassa et SPA Hammamet",
+{ title: "Hasdrubal Thalassa et SPA Hammamet",
 id: 15, 
 city: "Hammamet",
 address: "Zone Touristique Yasmine Hammamet B.P. N°04 - 8050 HAMMAMET TUNISIE", 
@@ -308,7 +323,7 @@ single_room:"230",
 double_room:"334", 
 },
 { 
-name: "Regency Hammamet", 
+title: "Regency Hammamet", 
 id: 16, 
 city: "Hammamet",
 address: "Avenue de la Paix – B.P. 112  8050 Hammamet-Tunisia ", 
@@ -320,7 +335,7 @@ With three restaurants and four bars, Hammamet Regency Hotel provides a choice w
 Our main restaurant, which has a beautiful terrace overlooking the pool and garden, offers a buffet of diverse local and international cuisine, meeting everyone’s expectations.`, 
 single_room:"48", 
 double_room:"96", },
-{ name: "La Cigale",
+{ title: "La Cigale",
 id: 17, 
 city: "Tabarka",
 address: "El Morjene tourist area, 8110 Tabarka, Tunisia", 
@@ -330,7 +345,7 @@ description:` Ideally located near the charming historic village of Tabarka, on 
 of Tunisia, La Cigale Tabarka Thalasso, SPA and Golf is a magic place where refined luxury, traditional hospitality, and lush greenery mix together. A perfect North-African evasion located in the tourist zone of Mourjane, 2 km from the historic downtown and 12 km from Tabarka international airport. The hotel has 248 rooms and suites, five restaurants which offer different menus, five luxurious bars, a Turkish coffee and a large selection of areas for leisure and business.`, 
 single_room:"285", 
 double_room:"390", },
-{ name: "Les Mimosas",
+{ title: "Les Mimosas",
  id: 18, 
 city: "Tabarka",
 address: "Av Habib Bourguiba, Tabarka", 
@@ -342,7 +357,7 @@ description:`the hotel is surrounded by the most famous ports of tabarka such as
 single_room:"78", 
 double_room:"108", },
 {
-    name: "LTI Mahdia Beach & Aquapark", 
+    title: "LTI Mahdia Beach & Aquapark", 
     id: 19, 
     city: "Mahdia",
     address: "Zone Touristique, Mahdia 5100", 
@@ -353,7 +368,7 @@ double_room:"108", },
     double_room:87, 
 },
 {
-        name: "La Badira",
+        title: "La Badira",
         id: 20,
         city: "Hammamet",
         address: "HAMMAMET NORD, Hammamet, Nabeul, 8050",
@@ -367,7 +382,9 @@ double_room:"108", },
         }
     },
     components: {
-      datepicker,
+      Datepicker: Datepicker,
+      // Picker: Picker,
+      // Filter: Filter
     }
     
 
