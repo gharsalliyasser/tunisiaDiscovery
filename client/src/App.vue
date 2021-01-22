@@ -1,5 +1,6 @@
 <template>
-  <v-app>
+  <v-app >
+<img src="https://metricool.com/wp-content/uploads/jason-blackeye-364785-2.jpg" id="bg" alt="">
     <v-app-bar flat max-height="65">
       <navbar />
     </v-app-bar>
@@ -43,9 +44,19 @@ export default {
 </script>
 
 <style>
+#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
 .app {
   display: flex;
   justify-content: center;
+  
 }
 .carousel {
   position: relative;
