@@ -19,6 +19,10 @@ const userSchema = new Schema({
         unique: true,
         type: String
     },
+    status: {
+        type: String,
+        default: 'user'
+    },
 });
 
 const db = mongoose.model('db', userSchema);

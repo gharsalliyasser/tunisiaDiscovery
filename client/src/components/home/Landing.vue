@@ -1,31 +1,5 @@
 <template>
-     <v-toolbar flat class="mainHeader">
-      <v-toolbar-title>Tunisia Discovery Project</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn text>
-          <router-link to="/home">Home</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/Gallery">Destinations</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/hotels">Hotels</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/events">Events</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/CarsPost">Cars</router-link>
-        </v-btn>
-      </v-toolbar-items> 
-      
-      <v-spacer></v-spacer>
-      <span>Welcome : {{name}}</span>
-      <v-spacer></v-spacer>
-      <v-btn color="blue lighten-3" @click="logout"> Logout</v-btn>
-     
-    
+
   <v-content>
     <div>
       <v-row align="end" class="lightbox white--text pa-2 fill-height">
@@ -63,12 +37,10 @@
       </v-container>
     </div>
   </v-content>
-  </v-toolbar>
 </template>
 
 <script>
 import Carousel from '../Slideshow/Carousel';
-import axios from 'axios';
 export default {
   name: "home",
   data() {
@@ -83,30 +55,11 @@ export default {
         "https://c0.wallpaperflare.com/preview/149/745/100/tunis-tunisia-sidi-bou-said-sea.jpg",
         "https://c4.wallpaperflare.com/wallpaper/1007/911/617/mediterranean-mediterranean-sea-sea-tunisia-wallpaper-preview.jpg",
       ],
-      name: '',
     };
   },
   components: {
      Carousel : Carousel,
   },
-   created() {
-    //user is not authorized
-    if (localStorage.getItem('token') === null) {
-      this.$router.push('/login');
-    }
-  },
-  mounted() {
-    axios.get('/api/users/user', { headers: { token: localStorage.getItem('token')}})
-      .then(res => {
-        this.name = res.data.user.name;
-      })
-  },
-  methods: {
-    logout() {
-      localStorage.clear();
-      this.$router.push('/');
-    }
-  }
 };
 </script>
 

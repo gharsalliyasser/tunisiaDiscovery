@@ -19,38 +19,8 @@
         <v-btn text>
           <router-link to="/CarsPost">Cars</router-link>
         </v-btn>
-      </v-toolbar-items>
-
-      <div class="hidden-sm-and-up">
-        <v-menu offset-y>
-          <v-list class="responsiveMenu">
-            <v-list-item>
-              <v-list-item-title>
-                <router-link to="/home">Home</router-link>
-              </v-list-item-title>
-              <v-list-item-title>
-                <router-link to="/places">Places</router-link>
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <router-link to="/hotels">Hotels</router-link>
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <router-link to="/events">Events</router-link>
-              </v-list-item-title>
-              <v-list-item-title>
-                <router-link to="/CarsPost">Cars</router-link>
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </div>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>{{appTitle}}</v-toolbar-title>
-
+      </v-toolbar-items> 
+      
       <v-spacer></v-spacer>
       <span>Not a member yet?</span>
       <v-spacer></v-spacer>

@@ -5,13 +5,15 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const CarRoutes = require('./routes/Cars');
+const usersRoutes = require('./routes/api/users')
+const CarRoutes = require('./routes/api/Cars');
 
 const app = express();
 
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(mongoUri, {
         useNewUrlParser: true,
@@ -21,8 +23,9 @@ mongoose.connect(mongoUri, {
     }).then(() => console.log('mongo-DB connected'))
     .catch((err) => console.log(err));
 
-//app.use(express.json({extended:false}));
-app.use('/api/Car', CarRoutes);
+
+app.use('/api/users', usersRoutes);
+app.use('/api/Cars', CarRoutes);
 
 
 //testing server activation on first run

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 
 
 export default {
@@ -37,9 +37,9 @@ export default {
       }
 
         //mouting data from cloud server
-        const id = this.$route.params.idcars;
-        const cars = await axios.get(`/api/Car/${id}`);
-        this.cars = cars.data;
+        // const id = this.$route.params.idcars;
+        // const cars = await axios.get(`/api/Car/${id}`);
+        // this.cars = cars.data;
     },
     
        

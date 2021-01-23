@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const car = require('../database/Cars');
+const car = require('../../models/Cars');
 
 const router = Router();
 
-router.post('/', async(req, res) => {
+router.post('/car', async(req, res) => {
     const { title, imageUrl, text, price } = req.body;
     let cars = {};
     cars.title = title;
@@ -17,7 +17,7 @@ router.post('/', async(req, res) => {
 
 //------------ get all cars ----------------
 
-router.get('/', async(req, res) => {
+router.get('/allcars', async(req, res) => {
     try {
         const cars = await car.find();
         if (!cars) throw new Error('No cars to display Err !');
@@ -46,16 +46,16 @@ router.get('/:id', async(req, res) => {
 
 //------------ create an car ------------------
 
-router.post('/', async(req, res) => {
-    const newCar = new car(req.body);
-    try {
-        const Carcreate = await newCar.save();
-        if (!Carcreate) throw new Error('Car creation opperation failed !');
-        res.status(200).json(Carcreate);
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
-})
+// router.post('/', async(req, res) => {
+//     const newCar = new car(req.body);
+//     try {
+//         const Carcreate = await newCar.save();
+//         if (!Carcreate) throw new Error('Car creation opperation failed !');
+//         res.status(200).json(Carcreate);
+//     } catch (err) {
+//         res.status(500).json({ message: err.message })
+//     }
+// })
 
 
 //------------ export module ---------------
