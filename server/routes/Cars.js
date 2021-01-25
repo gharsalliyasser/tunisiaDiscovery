@@ -1,13 +1,16 @@
 const { Router } = require('express');
 const car = require('../database/Cars');
-
+const cloudinary = require("../utils/cloudinary");
+const upload = require("../utils/multer");
 const router = Router();
 
-router.post('/', async(req, res) => {
-    const { title, imageUrl, text, price } = req.body;
+router.post('/',upload.single("image_url"), async(req, res) => {
+    const { title,  text, price } = req.body;
+    const result = await cloudinary.uploader.upload(req.file.path);
+
     let cars = {};
     cars.title = title;
-    cars.imageUrl = imageUrl;
+    cars.imageUrl = result.secure_url;;
     cars.text = text;
     cars.price = price;
     let carModel = new car(cars);

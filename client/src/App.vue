@@ -56,7 +56,7 @@ export default {
 .app {
   display: flex;
   justify-content: center;
-  min-height: 100%;
+  /* min-height: 100%; */
   
 }
 .carousel {

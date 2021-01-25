@@ -13,7 +13,9 @@
                     v-if="hover"
                     class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-1 white--text"
                     style="height: 100%;"
-                  >{{hotel.title}}</div>
+                  >{{hotel.title}}
+                   {{console.log('hotelhotelhotelhotel',hotel)}}
+                  </div>
                 </v-expand-transition>
               </v-img>
             </v-hover>
@@ -122,6 +124,7 @@ export default {
   async beforeMount(){
     var hotels = await axios.get('http://localhost:5000/api/hotels')
     this.hotels=hotels.data.hotels
+    console.log('hotels',this.hotels)
   },
   data() {
     return {
