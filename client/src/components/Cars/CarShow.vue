@@ -25,23 +25,24 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 
 
 export default {
     
     name: "CarShow",
-     data() {
-      return {
-         cars: null
-      }
+     data: () => ({
+       cars:null,
+}),
+    async mounted(){
+       const id= this.$route.params.idcars
+       console.log(id)
+       const show = await axios.get(`/api/Cars/${id}`);
+       console.log(show.data)
+       this.cars = show.data
 
-        //mouting data from cloud server
-        // const id = this.$route.params.idcars;
-        // const cars = await axios.get(`/api/Car/${id}`);
-        // this.cars = cars.data;
-    },
-    
+
+    }
        
 }
 </script>

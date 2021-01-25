@@ -22,8 +22,9 @@ router.get('/allcars', async(req, res) => {
         const cars = await car.find();
         if (!cars) throw new Error('No cars to display Err !');
         const sorted = cars.sort((a, b) => {
-            return new Date(a.date).getTime() - new Date(b.date).getTime()
+            return new Date(b.date).getTime() - new Date(a.date).getTime()
         })
+        console.log(sorted)
         res.status(200).json(sorted);
     } catch (err) {
         res.status(500).json({ message: err.message })

@@ -15,9 +15,7 @@
               <div>{{ car.text }}</div>
             </v-card-text>
             <v-card-actions>
-              <router-link :to="{ name: 'CarShow', params:{idcars: car._id}}">
-                <v-btn color="primary" text>More</v-btn>
-              </router-link>
+                <v-btn color="primary" text @click="showcar(car._id)">More</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -27,18 +25,26 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "CarsPost",
 
   data: () => ({
-     props: {
-        cars: Array,
-    },
+     
+        cars: [],
+  
   }),
 
- mounted() {
-    const response = axios.get("api/cars/allcars");
+ async mounted() {
+    const response = await axios.get("/api/cars/allcars");
+    console.log(response.data)
     this.cars = response.data;
   },
+  methods: {
+    showcar(id){
+      this.$router.push(`/CarShow/${id}`)
+
+    }
+  }
 };
 </script>

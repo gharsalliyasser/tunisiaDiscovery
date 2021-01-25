@@ -47,12 +47,12 @@
 
     methods:{
 
-      signup() {
+     async signup() {
       const user = {
                 email: this.email,
                 password: this.password
       }
-      axios.post('/api/users/signin', user)
+     await axios.post('/api/users/signin', user)
         .then(res => {
           //if successfull
           if (res.status === 200) {

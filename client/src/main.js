@@ -85,7 +85,7 @@ const router = new VueRouter({
             component: CarsPost
         },
         {
-            path: '/CarsPost/CarShow',
+            path: '/CarShow/:idcars',
             component: CarShow
         },
     ],

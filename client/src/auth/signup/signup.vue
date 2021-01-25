@@ -153,7 +153,7 @@ import axios from "axios";
 
   methods: {
 
-    submit() {
+    async submit() {
       let  newUser = {
         name: this.name,
         email: this.email,
@@ -161,7 +161,7 @@ import axios from "axios";
         select: this.select,
         password: this.password
       }
-       axios.post('/api/users/signup', newUser)
+       await axios.post('/api/users/signup', newUser)
         .then(newUser => {
           console.log(newUser)
           this.error = '';
