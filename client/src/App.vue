@@ -5,7 +5,7 @@
       <navbar />
     </v-app-bar>
     <div class="app">
-      <events />
+      <!-- <events /> -->
     </div>
     <router-view></router-view>
 
@@ -20,7 +20,7 @@
 
 <script>
 import Navbar from "./layout/Navbar/navbar";
-import Footer from "./layout/Footer/footer";
+import F from "./layout/Footer/f";
 export default {
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
   },
   components: {
     Navbar: Navbar,
-    Footer: Footer
+    Footer: F
   }
 }
 </script>
@@ -56,6 +56,7 @@ export default {
 .app {
   display: flex;
   justify-content: center;
+  min-height: 100%;
   
 }
 .carousel {

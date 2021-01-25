@@ -1,9 +1,9 @@
 <template>
-  <v-container class="grey lighten-5 mb-6" :key="align">
+  <v-container class="grey lighten-5 mb-6">
     <Datepicker />
 
     <v-row>
-      <v-col v-for="hotel in hotels" :key="hotel.id" class="col">
+      <v-col v-for="hotel in hotels" :key="hotel._id" class="col">
         <v-hover v-slot="{ hover }">
           <v-card height="100%" :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
             <v-hover v-slot="{ hover }">
@@ -113,25 +113,20 @@
 import Datepicker from "./main.vue";
 // import Picker from "./Calendar"
 // import Filter from "./filter"
-
+import axios from 'axios'
 export default {
   name: "card",
-  async asyncData({ axios }) {
-    try {
-      const response = await axios.get("http://localhost:5000/api/hotels");
-      console.log("response", response.hotels);
-      return {
-        hotels: response.hotels,
-      };
-    } catch (error) {
-      console.log(error);
-    }
+  methods: {
+
   },
-  method: {
-    WatchVideo() {},
+  async beforeMount(){
+    var hotels = await axios.get('http://localhost:5000/api/hotels')
+    this.hotels=hotels.data.hotels
   },
   data() {
     return {
+      selection:"",
+      hotels:null,
       select: { room: "Single Room", price: 200 },
       items: [
         { room: "Single Room", price: 200 },

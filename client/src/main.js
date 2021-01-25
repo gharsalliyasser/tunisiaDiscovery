@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 // layout
 import navbar from "./layout/Navbar/navbar";
-import footer from "./layout/Footer/footer";
+import f from "./layout/Footer/f";
 // auth
 import signin from './auth/signin/signin';
 import signup from './auth/signup/signup';
@@ -19,7 +19,7 @@ import events from './components/events/events';
 import filter from './components/Hotels/filter';
 import Gallery from './components/places/Gallery'
 
-
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.component('navbar', navbar)
 Vue.use(VueRouter)
@@ -45,8 +45,8 @@ const router = new VueRouter({
             component: navbar
         },
         {
-            path: '/footer',
-            component: footer
+            path: '/f',
+            component: f
         },
         {
             path: '/signup',

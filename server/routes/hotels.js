@@ -33,6 +33,7 @@ router.post('/hotels', async(req, res) => {
 router.get("/hotels", async(req, res) => {
     try {
         let hotels = await Hotel.find();
+        console.log(hotels)
         res.json({
             success: true,
             hotels: hotels
