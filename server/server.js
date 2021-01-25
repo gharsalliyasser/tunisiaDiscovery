@@ -4,14 +4,21 @@ const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const CarRoutes = require('./routes/Cars');
+const HotelRoutes = require('./routes/hotels');
 
 const app = express();
 
+// Setting up basic middleware for all Express requests
 app.use(cors());
 app.use(morgan('tiny'));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
+app.use(bodyParser.json()); // Send JSON responses
+app.use(express.json());
+
 
 mongoose.connect(mongoUri, {
         useNewUrlParser: true,
@@ -23,6 +30,7 @@ mongoose.connect(mongoUri, {
 
 //app.use(express.json({extended:false}));
 app.use('/api/Car', CarRoutes);
+app.use('/api/hotels', HotelRoutes);
 
 
 //testing server activation on first run
