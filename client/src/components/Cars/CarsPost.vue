@@ -10,7 +10,7 @@
             <v-img class="white--text align-end" height="200px" :src="car.imageUrl">
               <v-card-title>{{ car.title }}</v-card-title>
             </v-img>
-            <v-card-subtitle class="pb-0">{{ car.price }}</v-card-subtitle>
+            <v-card-subtitle class="pb-0">{{ car.price }} <span> per day </span></v-card-subtitle>
             <v-card-text class="text--primary">
               <div>{{ car.text }}</div>
             </v-card-text>

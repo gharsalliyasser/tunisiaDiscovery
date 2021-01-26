@@ -19,9 +19,9 @@
 
     <v-btn
       class="mr-4"
-      @click="signup"
+      @click="signin()"
     >
-      submit
+     submit
     </v-btn>
     {{ error }}
   </form>
@@ -33,7 +33,7 @@
 
 <script>
   import axios from 'axios';
-
+  const Cookie =require('js-cookie')
  export default {
     name: "Signin",
     
@@ -46,8 +46,11 @@
     }),
 
     methods:{
+        
 
-     async signup() {
+
+
+     async signin() {
       const user = {
                 email: this.email,
                 password: this.password
@@ -56,6 +59,7 @@
         .then(res => {
           //if successfull
           if (res.status === 200) {
+            Cookie.set('name',res.data.user.name)
             localStorage.setItem('token', res.data.token);
             this.$router.push('/home');
           }
@@ -63,6 +67,7 @@
           console.log(err.response);
           this.error = err.response.data.error
         }) 
+        document.location.reload(false)
   }
     }
  }

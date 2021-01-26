@@ -1,30 +1,5 @@
 <template>
-     <v-toolbar flat class="mainHeader">
-      <v-toolbar-title>Tunisia Discovery Project</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn text>
-          <router-link to="/home">Home</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/Gallery">Destinations</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/hotels">Hotels</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/events">Events</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/CarsPost">Cars</router-link>
-        </v-btn>
-      </v-toolbar-items> 
-      
-      <v-spacer></v-spacer>
-      <span>Welcome : {{name}}</span>
-      <v-spacer></v-spacer>
-      <v-btn color="blue lighten-3" @click="logout"> Logout</v-btn>
-     
+    
     
   <v-content>
     <div>
@@ -63,7 +38,7 @@
       </v-container>
     </div>
   </v-content>
-  </v-toolbar>
+
 </template>
 
 <script>
@@ -102,10 +77,7 @@ export default {
       })
   },
   methods: {
-    logout() {
-      localStorage.clear();
-      this.$router.push('/');
-    }
+   
   }
 };
 </script>

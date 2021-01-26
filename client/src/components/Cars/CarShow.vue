@@ -13,9 +13,7 @@
               <div>{{ cars.text }}</div>
             </v-card-text>
             <v-card-actions>
-              <router-link>
                 <v-btn color="primary" text>Reserve</v-btn>
-              </router-link>
             </v-card-actions>
           </v-card>
         </v-col>

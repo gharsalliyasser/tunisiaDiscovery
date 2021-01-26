@@ -11,14 +11,10 @@ const userSchema = new Schema({
         unique: true,
         type: Number
     },
-    select: {
-        unique: true,
-        type: String
-    },
-    password: {
-        unique: true,
-        type: String
-    },
+    select:  String,
+    
+    password: String,
+
     status: {
         type: String,
         default: 'user'
