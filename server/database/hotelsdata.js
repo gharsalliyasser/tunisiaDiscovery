@@ -16,14 +16,16 @@ const HotelSchema = new Schema({
         type: 'string',
         required: true
     },
-    stars: [Number],
+    stars: {
+        type: 'number',
+        required: true
+    },
     description: {
         type: 'string',
         required: true
     },
     image_url: {
         type: 'string',
-       
     },
     single_room: {
         type: 'number',
@@ -32,8 +34,7 @@ const HotelSchema = new Schema({
     double_room: {
         type: 'number',
         required: true
-    },
-       
+    },    
 })
 
  const Hotel = model("Hotel", HotelSchema);

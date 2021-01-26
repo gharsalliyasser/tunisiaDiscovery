@@ -10,7 +10,7 @@
     <router-view></router-view>
 
     <v-footer>
-   <Footer />
+   <Foot />
     </v-footer>
   </v-app>
 </template>
@@ -20,25 +20,26 @@
 
 <script>
 import Navbar from "./layout/Navbar/navbar";
-import F from "./layout/Footer/f";
+import Foot from "./layout/Footer/foot";
+
 export default {
   data() {
     return {
       slides: [
-        "https://c4.wallpaperflare.com/wallpaper/100/297/74/desert-sand-tourism-camels-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/403/906/437/nature-landscape-mountains-clouds-sunset-hd-wallpaper-preview.jpg",
-        "https://c0.wallpaperflare.com/preview/995/39/628/building-architecture-dome-tunisia.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/68/616/996/5bd128613e2d8-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/359/745/168/independence-day-in-tunisia-republic-of-tunisia-monastir-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/868/182/441/desert-sand-dune-sky-sahara-wallpaper-preview.jpg",
-        "https://c0.wallpaperflare.com/preview/149/745/100/tunis-tunisia-sidi-bou-said-sea.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/1007/911/617/mediterranean-mediterranean-sea-sea-tunisia-wallpaper-preview.jpg",
+        // "https://c4.wallpaperflare.com/wallpaper/100/297/74/desert-sand-tourism-camels-wallpaper-preview.jpg",
+        // "https://c4.wallpaperflare.com/wallpaper/403/906/437/nature-landscape-mountains-clouds-sunset-hd-wallpaper-preview.jpg",
+        // "https://c0.wallpaperflare.com/preview/995/39/628/building-architecture-dome-tunisia.jpg",
+        // "https://c4.wallpaperflare.com/wallpaper/68/616/996/5bd128613e2d8-wallpaper-preview.jpg",
+        // "https://c4.wallpaperflare.com/wallpaper/359/745/168/independence-day-in-tunisia-republic-of-tunisia-monastir-wallpaper-preview.jpg",
+        // "https://c4.wallpaperflare.com/wallpaper/868/182/441/desert-sand-dune-sky-sahara-wallpaper-preview.jpg",
+        // "https://c0.wallpaperflare.com/preview/149/745/100/tunis-tunisia-sidi-bou-said-sea.jpg",
+        // "https://c4.wallpaperflare.com/wallpaper/1007/911/617/mediterranean-mediterranean-sea-sea-tunisia-wallpaper-preview.jpg",
       ],
     };
   },
   components: {
     Navbar: Navbar,
-    Footer: F
+    Foot: Foot
   }
 }
 </script>

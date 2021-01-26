@@ -6,16 +6,20 @@ const Hotel = require("../database/hotelsdata");
 // POST request
 router.post("/", upload.single("image_url"), async (req, res) => {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
-    res.json(result);
     let hotel = new Hotel();
+    if(req.file){
+      const result = await cloudinary.uploader.upload(req.file.path);
+      hotel.image_url = result.secure_url;
+    }else {
+      hotel.image_url = req.body.image_url||"";
+    }
     hotel.title = req.body.title;
     hotel.city = req.body.city;
     hotel.address = req.body.address;
+    hotel.stars = req.body.stars;
     hotel.description = req.body.description;
     hotel.single_room = req.body.single_room;
     hotel.double_room = req.body.double_room;
-    hotel.image_url = result.secure_url;
 
     await hotel.save();
 

@@ -1,7 +1,13 @@
 <template>
-    <v-footer width="100%"
-        class="blue lighten-1" padless>
-        <div class="footer-content">
+    <v-footer class="footer" padless 
+    >
+      <v-card
+        flat
+        tile
+        width="100%"
+        class="blue lighten-1 text-center"
+      >
+      <div class="footer-content">
             <div class="about">
                 <h1 class="title"><span>Tunisia</span>Discovery</h1>
                 <p>
@@ -11,13 +17,14 @@ With three restaurants and four bars, Hammamet Regency Hotel provides a choice w
 Our main restaurant, which has a beautiful terrace overlooking the pool and garden, offers a buffet of diverse local and international cuisine, meeting everyone’s expectations. 
                 </p>
             </div>
+        <!-- <v-divider></v-divider> -->
             <div class="contact">
-                <span><v-icon
+                <span><v-icon class="a"
                 large
                 color="white darken-2"
                 >
                 mdi-phone
-                </v-icon> &nbsp; Phone: (216) 22 22 22 22</span>
+                </v-icon > &nbsp; Phone: (216) 22 22 22 22</span>
                 <span><v-icon
                 large
                 color="white darken-2"
@@ -26,19 +33,35 @@ Our main restaurant, which has a beautiful terrace overlooking the pool and gard
                 </v-icon> &nbsp;Mail: contact@tunisia.com</span>
             </div>
         </div>
-        <div class="footer-bottom">
-        &copy; Tunisia Discovery
-        </div>
+        <v-card-text class="white--text">
+          {{ new Date().getFullYear() }} — <strong>Tunisia Discovery</strong>
+        </v-card-text>
+      </v-card>
+      
     </v-footer>
+
+  
 </template>
 <script>
-export default {
-  name: "f",
-  data: () => ({}),
-};
+  export default {
+      name: "foot",
+    data: () => ({
+      icons: [
+        'mdi-phone',
+        'mdi-email',
+        // 'mdi-calendar',
+        // 'mdi-delete',
+      ],
+      
+      // padless: true,
+      // variant: true,
+      // absolute: true,
+      // fixed: true,
+    }),
+  }
 </script>
 <style scoped>
-.footer {
+/* .footer {
   background: rgb(137, 169, 245);
   color: white;
   height: 400px;
@@ -63,5 +86,5 @@ display: flex;
   bottom: 0px;
   left: 0px;
   padding-top: 20px;
-} 
+}  */
 </style>
