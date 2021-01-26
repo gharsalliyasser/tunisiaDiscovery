@@ -1,32 +1,41 @@
-const express = require('express');
+const { PORT, mongoUri } = require("./config");
+const bodyParser = require("body-Parser");
+const mongoose = require("mongoose");
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
+
+const CarRoutes = require("./routes/Cars");
+const HotelRoutes = require("./routes/hotels");
+const PlaceRoutes = require("./routes/place");
+const usersRoutes = require("./routes/users");
+
 const app = express();
-const mongoose = require('mongoose');
-const { PORT, mongoUri } = require('./config');
-const cors = require('cors');
-const morgan = require('morgan');
-const bodyParser = require('body-Parser');
 
-const usersRoutes = require('./routes/api/users')
-const CarRoutes = require('./routes/api/Cars');
-
+// Setting up basic middleware for all Express requests
 app.use(cors());
-app.use(morgan('tiny'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan("tiny"));
+app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
+app.use(bodyParser.json()); // Send JSON responses
+app.use(express.json());
 
+mongoose
+    .connect(mongoUri, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+    })
+    .then(() => console.log("mongo-DB connected"))
+    .catch((err) => console.log(err));
 
-mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-}).then(() => console.log('mongo-DB connected'))
-.catch((err) => console.log(err));
-
-
-app.use('/api/users', usersRoutes);
-app.use('/api/Cars', CarRoutes);
-
+//app.use(express.json({extended:false}));
+app.use("/api/Car", CarRoutes);
+app.use("/api/hotels", HotelRoutes);
+app.use("/api/place", PlaceRoutes);
+app.use("/api/users", usersRoutes);
 
 //testing server activation on first run
 //  app.get('/', (req, res) =>{
@@ -34,9 +43,3 @@ app.use('/api/Cars', CarRoutes);
 //  })
 
 app.listen(PORT, () => console.log(`logged on PORT ${PORT}`));
-
-
-
-
-
-

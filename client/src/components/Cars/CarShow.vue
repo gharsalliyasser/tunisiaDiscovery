@@ -35,7 +35,7 @@ export default {
     async mounted(){
        const id= this.$route.params.idcars
        console.log(id)
-       const show = await axios.get(`/api/Cars/${id}`);
+       const show = await axios.get(`http://localhost:5000/api/Car/${id}`);
        console.log(show.data)
        this.cars = show.data
 

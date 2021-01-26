@@ -32,48 +32,9 @@ export default {
 };
 </script>
 
-<style >
-.app {
-  display: flex;
-  justify-content: center;
-}
-.carousel {
-  position: relative;
-  overflow: hidden;
-  width: 900px;
-  height: 500px;
-  z-index: 10;
-}
-.btn {
-  padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: 1px solid transparent;
-  margin: 5px 10px;
-  color: #fff;
-  height: 50px;
-  width: 50px;
-  position: absolute;
-  margin-top: -25px;
-  z-index: 2;
-}
-.btn:hover {
-  cursor: pointer;
-}
-.btn:focus {
-  outline: none;
-}
-.btn-next {
-  top: 50%;
-  right: 0;
-  width: 70px;
-}
-.btn-prev {
-  top: 50%;
-  left: 0;
-  width: 70px;
-}
-.carousel-slider {
-  position: absolute;
+<style>
+#bg {
+  position: fixed;
   top: 0;
   left: 0;
 

@@ -1,24 +1,11 @@
 <template>
+  <v-main>
     
-    
-  <v-content>
-    <div>
-      <v-row align="end" class="lightbox white--text pa-2 fill-height">
-        <v-col>
-          <v-container>
-            <div class="headline">Home</div>
-          </v-container>
-        </v-col>
-      </v-row>
-    </div>
+  <div class="headline white--text pa-2">Home</div>
+          
+
     <div class="app">
-      <carousel>
-        <carousel >
-            <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
-                <img :src="slide" :alt="slide">
-            </carousel-slide>
-        </carousel>
-      </carousel>
+      <c />
     </div>
     
     <div>
@@ -34,50 +21,35 @@
           launches and commemorations, combining originality and solutions to
           suit all budgets.
         </p>
-    
+        <v-row>
+          <v-card>
+            <div class="title">Tunisia is close to the main European capitals and has plenty of
+          connecting flights to these every week. As well as the convenience of
+          the flight and the savings in transport costs, Tunisia is a fantastic
+          destination for shorter events in an exotic location. There’s the
+          Sahara (which has been used as the location for many films, including
+          the classic Star Wars saga) as well as prestigious sites like the El
+          Dem amphitheatre. Tunisia is the perfect destination for product
+          launches and commemorations, combining originality and solutions to
+          suit all budgets.</div>
+          </v-card>
+        </v-row>
       </v-container>
     </div>
-  </v-content>
-
+  </v-main>
 </template>
 
 <script>
-import Carousel from '../Slideshow/Carousel';
-import axios from 'axios';
+import c from '../Slideshow/c';
 export default {
   name: "home",
   data() {
     return {
-      slides: [
-        "https://c4.wallpaperflare.com/wallpaper/100/297/74/desert-sand-tourism-camels-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/403/906/437/nature-landscape-mountains-clouds-sunset-hd-wallpaper-preview.jpg",
-        "https://c0.wallpaperflare.com/preview/995/39/628/building-architecture-dome-tunisia.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/68/616/996/5bd128613e2d8-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/359/745/168/independence-day-in-tunisia-republic-of-tunisia-monastir-wallpaper-preview.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/868/182/441/desert-sand-dune-sky-sahara-wallpaper-preview.jpg",
-        "https://c0.wallpaperflare.com/preview/149/745/100/tunis-tunisia-sidi-bou-said-sea.jpg",
-        "https://c4.wallpaperflare.com/wallpaper/1007/911/617/mediterranean-mediterranean-sea-sea-tunisia-wallpaper-preview.jpg",
-      ],
-      name: '',
+      
     };
   },
   components: {
-     Carousel : Carousel,
+     c
   },
-   created() {
-    //user is not authorized
-    if (localStorage.getItem('token') === null) {
-      this.$router.push('/login');
-    }
-  },
-  mounted() {
-    axios.get('/api/users/user', { headers: { token: localStorage.getItem('token')}})
-      .then(res => {
-        this.name = res.data.user.name;
-      })
-  },
-  methods: {
-   
-  }
 };
 </script>

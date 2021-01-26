@@ -36,7 +36,7 @@ export default {
   }),
 
  async mounted() {
-    const response = await axios.get("/api/cars/allcars");
+    const response = await axios.get("http://localhost:5000/api/Car");
     console.log(response.data)
     this.cars = response.data;
   },

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-toolbar flat src="https://c4.wallpaperflare.com/wallpaper/359/745/168/independence-day-in-tunisia-republic-of-tunisia-monastir-wallpaper-preview.jpg" min-width="2000px" color="cyan lighten-1" class="mainHeader">
+    <v-toolbar flat class="mainHeader">
       <v-toolbar-title>Tunisia Discovery Project</v-toolbar-title>
 
       <v-toolbar-items class="hidden-xs-only">
