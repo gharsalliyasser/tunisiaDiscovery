@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const place = require("../database/placesSchema");
+const place = require("../models/placesSchema");
 
 const router = Router();
 
