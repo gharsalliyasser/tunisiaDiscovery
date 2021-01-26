@@ -1,6 +1,5 @@
 <template>
-    
-    
+
   <v-content>
     <div>
       <v-row align="end" class="lightbox white--text pa-2 fill-height">
@@ -38,12 +37,10 @@
       </v-container>
     </div>
   </v-content>
-
 </template>
 
 <script>
 import Carousel from '../Slideshow/Carousel';
-import axios from 'axios';
 export default {
   name: "home",
   data() {
@@ -58,26 +55,59 @@ export default {
         "https://c0.wallpaperflare.com/preview/149/745/100/tunis-tunisia-sidi-bou-said-sea.jpg",
         "https://c4.wallpaperflare.com/wallpaper/1007/911/617/mediterranean-mediterranean-sea-sea-tunisia-wallpaper-preview.jpg",
       ],
-      name: '',
     };
   },
   components: {
      Carousel : Carousel,
   },
-   created() {
-    //user is not authorized
-    if (localStorage.getItem('token') === null) {
-      this.$router.push('/login');
-    }
-  },
-  mounted() {
-    axios.get('/api/users/user', { headers: { token: localStorage.getItem('token')}})
-      .then(res => {
-        this.name = res.data.user.name;
-      })
-  },
-  methods: {
-   
-  }
 };
 </script>
+
+<style>
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 900px;
+  height: 500px;
+  z-index: 10;
+}
+.btn {
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid transparent;
+  margin: 5px 10px;
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  margin-top: -25px;
+  z-index: 2;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn:focus {
+  outline: none;
+}
+.btn-next {
+  top: 50%;
+  right: 0;
+  width: 70px;
+}
+.btn-prev {
+  top: 50%;
+  left: 0;
+  width: 70px;
+}
+.carousel-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.carousel-slider img {
+  width: 100%;
+  height: 100%;
+}
+</style>

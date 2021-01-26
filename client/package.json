@@ -1,7 +1,7 @@
 {
-  "name": "tunisia-discovery",
+  "name": "client",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -14,12 +14,14 @@
     "axios": "^0.21.1",
     "cloudinary": "^1.23.0",
     "core-js": "^3.6.5",
-    "dotenv": "^8.2.0",
-    "multer": "^1.4.2",
+    "Promise": "^1.0.5",
+    "js-cookie": "^2.2.1",
+    "Promise": "^1.0.5",
+    "request-promise": "^4.2.6",
     "vue": "^2.6.12",
     "vue-router": "^3.4.9",
     "vuelidate": "^0.7.6",
-    "vuetify": "^2.4.2"
+    "vuetify": "^2.4.2",
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

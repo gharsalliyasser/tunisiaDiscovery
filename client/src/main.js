@@ -18,8 +18,8 @@ import card from './components/Hotels/Cards';
 import events from './components/events/events';
 import filter from './components/Hotels/filter';
 import Gallery from './components/places/Gallery'
-
-import 'vuetify/dist/vuetify.min.css'
+import Landing from './components/home/Landing'
+import CarShow from './components/Cars/CarShow'
 
 Vue.component('navbar', navbar)
 Vue.use(VueRouter)
@@ -29,6 +29,10 @@ Vue.config.productionTip = false
 
 const router = new VueRouter({
     routes: [{
+            path: '/',
+            component: Landing
+        },
+        {
             path: '/home',
             component: home
         },
@@ -79,6 +83,10 @@ const router = new VueRouter({
         {
             path: '/CarsPost',
             component: CarsPost
+        },
+        {
+            path: '/CarShow/:idcars',
+            component: CarShow
         },
     ],
     mode: 'history'
