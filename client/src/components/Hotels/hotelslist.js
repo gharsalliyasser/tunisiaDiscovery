@@ -12,7 +12,6 @@ hotels: [
     The hotel offers different bars and restaurants with local specialties and international menus. Enjoy also the restoring cabaret with its dancers and orchestra.`,
       single_room: 520,
       double_room: 740,
-      video_url: "https://www.youtube.com/watch?v=IuToJExQVh4 ",
     },
     {
       title: "Laico Tunis",
@@ -27,7 +26,6 @@ hotels: [
     allying Business and Leisure is one of the top luxurious hotel in Tunisia.`,
       single_room: 410,
       double_room: 608,
-      video_url: "https://www.youtube.com/watch?v=SlqQ-Y3sjys",
     },
     {
       title: "The Penthouse Suites",
@@ -287,7 +285,7 @@ of Tunisia, La Cigale Tabarka Thalasso, SPA and Golf is a magic place where refi
       address: " BP 76, Yasmine Hammamet 8040",
       stars: 5,
       image_url:
-        "https://lh3.googleusercontent.com/proxy/cuqdSMsFzvPONnnxwdpkPkU4tl9t29dQfZD5hGfScw--Ch5wpE-BQqg5IQcPCMvfNHG3sT1-5UPoNqOEa3GItAaHvd_k0ORFBz2wUWSGr3je",
+        "https://image.resabooking.com/images/image_panoramique/The_Russelior_3.jpg ",
       description: ` An upscale property, a 3000m2 spa, a private beach, a 2000m2 lagoon pool, restaurants to satisfy all appetites, a team striving to meet all your requests, and much more. All that’s missing is … you, so get ready quickly`,
       single_room: 87,
       double_room: 173,

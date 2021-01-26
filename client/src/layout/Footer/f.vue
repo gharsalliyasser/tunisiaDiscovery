@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <v-footer>
         <div class="footer-content">
             <div class="about">
                 <h1 class="title"><span>Tunisia</span>Discovery</h1>
@@ -11,14 +11,24 @@ Our main restaurant, which has a beautiful terrace overlooking the pool and gard
                 </p>
             </div>
             <div class="contact">
-                <span><i class="fas fa-phone"></i> &nbsp; 00216 22 22 22 22</span>
-                <span><i class="fas fa-envelope"></i> &nbsp; contact@tunisia.com</span>
+                <span><v-icon
+                large
+                color="white darken-2"
+                >
+                mdi-phone
+                </v-icon> &nbsp; Phone: (216) 22 22 22 22</span>
+                <span><v-icon
+                large
+                color="white darken-2"
+                >
+                mdi-mail
+                </v-icon> &nbsp;Mail: contact@tunisia.com</span>
             </div>
         </div>
         <div class="footer-bottom">
         &copy; Tunisia Discovery
         </div>
-    </div>
+    </v-footer>
 </template>
 <script>
 export default {
@@ -28,7 +38,7 @@ export default {
 </script>
 <style scoped>
 .footer {
-  background: rgb(33, 52, 95);
+  background: rgb(66, 139, 223);
   color: white;
   height: 400px;
   width: 100%;
@@ -43,7 +53,7 @@ display: flex;
     padding: 25px;
 }
 .footer .footer-bottom {
-  background: rgba(33, 52, 95, 0.856);
+  background: rgb(137, 169, 245);
   color: white;
   height: 50px;
   width: 100%;
@@ -52,5 +62,5 @@ display: flex;
   bottom: 0px;
   left: 0px;
   padding-top: 20px;
-} 
+}
 </style>
