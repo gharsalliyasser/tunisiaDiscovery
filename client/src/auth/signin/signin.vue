@@ -1,0 +1,88 @@
+
+<template>
+  <v-app>
+    <v-content>
+      <v-card width="800" height="320" class="mx-auto mt-9">
+        <v-card-title> Let's go</v-card-title>
+        <v-text-field
+          v-model="email"
+          :error-messages="emailErrors"
+          label="E-mail"
+          required
+          @input="$v.email.$touch()"
+          @blur="$v.email.$touch()"
+        ></v-text-field>
+
+   <v-app>
+    <v-content>
+      <v-card width="800" height="320" class="mx-auto mt-9">
+        <v-card-title>Login Form</v-card-title>
+   <form>
+    <v-text-field
+      v-model="email"
+      label="E-mail"
+      required
+    ></v-text-field>
+    <v-text-field
+        label="Password"
+        v-model="password"
+        type="password"
+        required
+></v-text-field>
+
+    <v-btn
+      class="mr-4"
+      @click="signin()"
+    >
+     submit
+    </v-btn>
+    {{ error }}
+  </form>
+  
+  </v-card>
+  </v-content>
+  </v-app>
+</template>
+
+<script>
+  import axios from 'axios';
+  const Cookie =require('js-cookie')
+ export default {
+    name: "Signin",
+    
+
+    data: () => ({
+      
+      email: '',
+      password: '',
+      error: '',
+    }),
+
+    methods:{
+        
+
+
+
+     async signin() {
+      const user = {
+                email: this.email,
+                password: this.password
+      }
+     await axios.post('/api/users/signin', user)
+        .then(res => {
+          //if successfull
+          if (res.status === 200) {
+            Cookie.set('name',res.data.user.name)
+            localStorage.setItem('token', res.data.token);
+            this.$router.push('/home');
+          }
+        }, err => {
+          console.log(err.response);
+          this.error = err.response.data.error
+        }) 
+        document.location.reload(false)
+  }
+    }
+ }
+  
+</script>
