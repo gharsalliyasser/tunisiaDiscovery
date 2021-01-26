@@ -1,6 +1,5 @@
 <template>
-    <v-footer width="100%"
-        class="blue lighten-1" padless>
+    <v-footer>
         <div class="footer-content">
             <div class="about">
                 <h1 class="title"><span>Tunisia</span>Discovery</h1>
@@ -39,7 +38,7 @@ export default {
 </script>
 <style scoped>
 .footer {
-  background: rgb(137, 169, 245);
+  background: rgb(66, 139, 223);
   color: white;
   height: 400px;
   width: 100%;
@@ -63,5 +62,5 @@ display: flex;
   bottom: 0px;
   left: 0px;
   padding-top: 20px;
-} 
+}
 </style>
