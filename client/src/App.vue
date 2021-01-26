@@ -42,7 +42,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .app {
   display: flex;
   justify-content: center;

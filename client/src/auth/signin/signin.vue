@@ -13,87 +13,76 @@
           @blur="$v.email.$touch()"
         ></v-text-field>
 
-        <v-text-field
-          label="Password"
-          :type="showPassword ? 'text' : 'password'"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="showPassword = !showPassword"
-          v-model="password"
-          :rules="passwordRules"
-          error-count="5"
-          required
-        ></v-text-field>
+   <v-app>
+    <v-content>
+      <v-card width="800" height="320" class="mx-auto mt-9">
+        <v-card-title>Login Form</v-card-title>
+   <form>
+    <v-text-field
+      v-model="email"
+      label="E-mail"
+      required
+    ></v-text-field>
+    <v-text-field
+        label="Password"
+        v-model="password"
+        type="password"
+        required
+></v-text-field>
 
-        <v-btn color="info" class="mr-4" @click="signin" >submit</v-btn>
-        <v-btn color="info" @click="clear">clear</v-btn>
-      </v-card>
-    </v-content>
+    <v-btn
+      class="mr-4"
+      @click="signin()"
+    >
+     submit
+    </v-btn>
+    {{ error }}
+  </form>
+  
+  </v-card>
+  </v-content>
   </v-app>
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required, maxLength, email } from "vuelidate/lib/validators";
-import axios from "axios";
+  import axios from 'axios';
+  const Cookie =require('js-cookie')
+ export default {
+    name: "Signin",
+    
 
-export default {
-  name:"signin",
-  mixins: [validationMixin],
+    data: () => ({
+      
+      email: '',
+      password: '',
+      error: '',
+    }),
 
-  validations: {
-    name: { required, maxLength: maxLength(20) },
-    email: { required, email },
-    password: { required, maxLength: maxLength(10) },
-  },
+    methods:{
+        
 
-  data: () => 
-  ({
-    email: "",
-    password: "",
-    showPassword: false,
-    passwordRules: [
-      ($v) => !!$v || "Password is required",
-      ($v) => ($v && $v.length >= 5) || "Password must have 5+ characters",
-      ($v) => /(?=.*[A-Z])/.test($v) || "Must have one uppercase character",
-      ($v) => /(?=.*\d)/.test($v) || "Must have one number",
-      ($v) => /([!@$%])/.test($v) || "Must have one special character [!@#$%]",
-    ],
-    error: "",
-  }),
 
-  computed: {
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("Must be valid e-mail");
-      !this.$v.email.required && errors.push("E-mail is required");
-      return errors;
-    },
-  },
 
-  methods: {
-    clear() {
-      this.$v.$reset();
-      this.email = "";
-      this.password = "";
-      this.passwordRules = "";
-    },
-
-    async signin(){
-            const userdata = await axios.post('/api/users/signin', {
-                email : this.email,
+     async signin() {
+      const user = {
+                email: this.email,
                 password: this.password
-            });
-            if(userdata.data){
-                this.email = '';
-                this.password = '';
-                window.location.replace('/home')
-            } else {
-                this.email = '';
-                this.password = '';
-                alert("your information are wrong please check your inputs")
-            }
-        }
-  },
-};
+      }
+     await axios.post('/api/users/signin', user)
+        .then(res => {
+          //if successfull
+          if (res.status === 200) {
+            Cookie.set('name',res.data.user.name)
+            localStorage.setItem('token', res.data.token);
+            this.$router.push('/home');
+          }
+        }, err => {
+          console.log(err.response);
+          this.error = err.response.data.error
+        }) 
+        document.location.reload(false)
+  }
+    }
+ }
+  
 </script>

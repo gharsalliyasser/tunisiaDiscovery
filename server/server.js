@@ -6,8 +6,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-Parser');
 
-const userRoutes = require('./routes/api/user');
-//const CarRoutes = require('./routes/api/Cars');
+const usersRoutes = require('./routes/api/users')
+const CarRoutes = require('./routes/api/Cars');
 
 app.use(cors());
 app.use(morgan('tiny'));
@@ -23,8 +23,9 @@ mongoose.connect(mongoUri, {
 }).then(() => console.log('mongo-DB connected'))
 .catch((err) => console.log(err));
 
-app.use('/api/user', userRoutes);
-//app.use('/api/Car', CarRoutes);
+
+app.use('/api/users', usersRoutes);
+app.use('/api/Cars', CarRoutes);
 
 
 //testing server activation on first run

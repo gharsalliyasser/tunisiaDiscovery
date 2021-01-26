@@ -1,83 +1,134 @@
 <template>
 
-  <v-container>
-    <v-card-title>Registration Form</v-card-title>
-   <form>
-    <v-text-field
-      v-model="name"
-      :error-messages="nameErrors"
-      :counter="20"
-      label="FullName"
-      required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
-    ></v-text-field>
-    <v-text-field
-      v-model="email"
-      :error-messages="emailErrors"
-      label="E-mail"
-      required
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
-    ></v-text-field>
-    <v-text-field
-      v-model="number"
-      :error-messages="phoneErrors"
-      :counter="8"
-      label="Phone"
-      required
-      @input="$v.number.$touch()"
-      @blur="$v.number.$touch()"
-    ></v-text-field>
-   
-    <v-text-field
-        label="Password"
-        v-model="password"
-        type="password"
-        :rules="passwordRules"
-        :counter="10"
-        required
-      @input="$v.password.$touch()"
-      @blur="$v.password.$touch()"
-></v-text-field>
+       <validation-observer
+    ref="observer"
+    v-slot="{ invalid }"
+  >
+    <form @submit.prevent="submit">
+      <validation-provider
+        v-slot="{ errors }"
+        name="Name"
+        rules="required|max:20"
+      >
+        <v-text-field
+          v-model="name"
+          :error-messages="errors"
+          label="Name"
+          required
+        ></v-text-field>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
+        name="email"
+        rules="required|email"
+      >
+        <v-text-field
+          v-model="email"
+          :error-messages="errors"
+          label="E-mail"
+          required
+        ></v-text-field>
+      </validation-provider>
+       <validation-provider
+        v-slot="{ errors }"
+        name="phoneNumber"
+        :rules="{
+          required: true,
+          digits: 8,
+          regex: '^(21|22|24|26|53|52|54|55|52|97|98|99)\\d{5}$'
+        }"
+      >
+        <v-text-field
+          v-model="number"
+          :error-messages="errors"
+          label="Phone Number"
+          required
+        ></v-text-field>
+      </validation-provider>
+      <validation-provider
+        v-slot="{ errors }"
+        name="select"
+        rules="required"
+      >
+        <v-select
+          v-model="select"
+          :items="items"
+          :error-messages="errors"
+          label="Select"
+          data-vv-name="select"
+          required
+        ></v-select>
+      </validation-provider>
+      
+       <v-text-field
+          label="Password"
+          :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
+          v-model="password"
+          :rules="passwordRules"
+          error-count="1"
+          required
+        ></v-text-field>
 
-    <v-btn
-      class="mr-4"
-      @click="signup"
-    
-    >
-      Submit
-    </v-btn>
-    <v-btn @click="clear">
-      Clear
-    </v-btn>
-    {{error}}
-  </form>
-  </v-container>
+      <v-btn
+        class="mr-4"
+        type="submit"
+        :disabled="invalid"
+      >
+        Submit
+      </v-btn>
+      {{ error}}
+    </form>
+  </validation-observer>
+        
+      </v-card>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-  import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
-  import axios from 'axios';
+import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import axios from "axios";
+
+  setInteractionMode('eager')
+
+  extend('digits', {
+    ...digits,
+    message: '{_field_} needs to be {length} digits. ({_value_})',
+  })
+
+  extend('required', {
+    ...required,
+    message: '{_field_} can not be empty',
+  })
+
+  extend('max', {
+    ...max,
+    message: '{_field_} may not be greater than {length} characters',
+  })
+
+  extend('regex', {
+    ...regex,
+    message: '{_field_} {_value_} does not match {regex}',
+  })
+
+  extend('email', {
+    ...email,
+    message: 'Email must be valid',
+  })
 
   export default {
-    name:"signup",
-    mixins: [validationMixin],
-
-    validations: {
-      name: { required, maxLength: maxLength(20) },
-      email: { required, email },
-      number: { required, maxLength: maxLength(8) },
-      select: { required },
-      password: { required, maxLength: maxLength(10) },
-      
+    components: {
+      ValidationProvider,
+      ValidationObserver,
     },
-
     data: () => ({
       name: '',
       email: '',
-      number:'',
+      number: '',
+      select: null,
       items: [
         'France',
         'Germany',
@@ -85,82 +136,41 @@
         'Russia',
       ],
       password: '',
-      passwordRules: [ 
-        $v => !!$v || 'Password is required', 
-        $v => ($v && $v.length >= 5) || 'Password must have 5+ characters',
-        $v => /(?=.*[A-Z])/.test($v) || 'Must have one uppercase character', 
-        $v => /(?=.*\d)/.test($v) || 'Must have one number', 
-        $v => /([!@$%])/.test($v) || 'Must have one special character [!@#$%]' 
-      ],
-      error: '',
+      passwordRules: [
+      ($v) => !!$v || "Password is required",
+      ($v) => ($v && $v.length >= 8) || "Password must have 8+ characters",
+      ($v) => /(?=.*[A-Z])/.test($v) || "Must have one uppercase character",
+      ($v) => /(?=.*\d)/.test($v) || "Must have one number",
+      ($v) => /([!@$%])/.test($v) || "Must have one special character [!@#$%]",
+    ],
+    showPassword: false,
+    error:''
     }),
 
-    computed: {
-   
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 20 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
-        return errors
-      },
-      phoneErrors(){
-         const errors = []
-        if (!this.$v.number.$dirty) return errors
-        !this.$v.number.maxLength && errors.push('Number must be 8 numbers')
-        !this.$v.number.required && errors.push('Number is required.')
-        return errors
-      },
-      // selectErrors () {
-      //   const errors = []
-      //   if (!this.$v.select.$dirty) return errors
-      //   !this.$v.select.required && errors.push('Item is required')
-      //   return errors
-      // },
+  methods: {
+
+    async submit() {
+      let  newUser = {
+        name: this.name,
+        email: this.email,
+        number:this.number,
+        select: this.select,
+        password: this.password
+      }
+       await axios.post('/api/users/signup', newUser)
+        .then(newUser => {
+          console.log(newUser)
+          this.error = '';
+          this.$router.push('/signin');
+          
+        }).catch (err => {
+          console.log(err.response)
+          this.error = err.res.data.error
+        })
+        this.$refs.observer.validate()
+            
       
     },
-
-    methods: {
-
-  
-      clear () {
-        this.$v.$reset()
-        this.name = ''
-        this.email = ''
-        this.number=''
-        //this.select = null
-        this.password = ''
-        this.passwordRules = ''
-        
-      },
-
-       signup() {
-         const newUser = {
-          name: this.name,
-          email: this.email,
-          number: this.number,
-          //select: this.select,
-          password: this.password
-      }
-      axios.post('/api/user/signup', newUser)
-        .then(res => {
-          console.log(res)
-          this.error = '';
-          this.$router.push('/sginin');
-        }, err => {
-         console.log(err.response)
-          this.error = err.response.data.error
-        })
-        //this.$v.$touch();
-        
-    }
-  }
-  }
+  },
+};
 </script>
