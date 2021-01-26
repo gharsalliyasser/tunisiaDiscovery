@@ -48,8 +48,7 @@
           </v-list>
         </v-menu>
       </div>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>{{appTitle}}</v-toolbar-title>
+     
 
       <v-spacer></v-spacer>
       <span>Not a member yet?</span>

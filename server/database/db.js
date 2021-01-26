@@ -3,22 +3,24 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     name: String,
+        
     email: {
-        unique: true,
-        type: String
+        type: String,
+        required: true
     },
     number: {
-        unique: true,
-        type: Number
-    },
-    select: {
-        unique: true,
-        type: String
+        type: Number,
+        required: true
     },
     password: {
-        unique: true,
-        type: String
+        type: String,
+        required: true
     },
+    status: {
+        type: String,
+        default: 'user'
+    },
+    
 });
 
 const db = mongoose.model('db', userSchema);
