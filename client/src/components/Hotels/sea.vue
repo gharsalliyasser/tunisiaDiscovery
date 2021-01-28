@@ -1,19 +1,65 @@
 <template>
+  <v-toolbar
+    dark
+    color="teal"
+  >
+    <v-toolbar-title>State selection</v-toolbar-title>
+    <v-autocomplete
+      v-model="search"
+      class="mx-4"
+      flat
+      hide-no-data
+      hide-details
+      label="What state are you from?"
+      solo-inverted
+    ></v-autocomplete>
+    <v-btn icon>
+      <v-icon>mdi-dots-vertical</v-icon>
+    </v-btn>
+  </v-toolbar>
+</template>
+<script>
+import axios from 'axios';
+
+  export default {
+  name: "sea",
+    computed: {
+       filterHotels(){
+        return this.hotels.filter( e => e.title.toLowerCase().includes(this.search.toLowerCase()) || e.address.toLowerCase().includes(this.search.toLowerCase()));
+    }
+  },
+  async beforeMount(){
+    var hotels = await axios.get('http://localhost:5000/api/hotels')
+    this.hotels=hotels.data.hotels
+    console.log('hotels',this.hotels)
+  },
+  data() {
+    return {
+      search: '',
+      hotels:[],
+    };
+  },
+  
+};
+
+</script>
+<template>
   <v-container class="grey lighten-5 mb-6">
     <div class="search-wrapper">
-      <v-toolbar dark color="teal">
-        <v-toolbar-title>Search</v-toolbar-title>
-        <input
-          class="input "
-          type="text"
-          v-model="search"
-          placeholder="Search by city or name.."
-        />
+ 
+    <v-toolbar dark color="teal">
+      <v-toolbar-title>Search</v-toolbar-title>
+      <input
+        class="input "
+        type="text"
+        v-model="search"
+        placeholder="Search by city or name.."
+      />
 
-        <v-btn icon>
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-      </v-toolbar>
+      <v-btn icon>
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+    </v-toolbar>
     </div>
 
     <v-row>
@@ -38,14 +84,14 @@
                 </v-expand-transition>
               </v-img>
             </v-hover>
-            <!-- <v-tooltip bottom> -->
-              <template>
-              <v-card-title color="primary" dark>
-                {{ hotel.title }}
-              </v-card-title>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-card-title color="primary" dark v-bind="attrs" v-on="on">{{
+                  hotel.title
+                }}</v-card-title>
               </template>
-              <!-- <span>You can reserve below</span> -->
-            <!-- </v-tooltip> -->
+              <span>You can reserve below</span>
+            </v-tooltip>
             <v-card-text>
               <v-row align="center" class="mx-0">
                 <v-rating
@@ -57,7 +103,7 @@
                   size="14"
                 ></v-rating>
 
-                <!-- <div class="grey--text ml-4">{{ hotel.stars }}</div> -->
+                <div class="grey--text ml-4">{{ hotel.stars }}</div>
               </v-row>
 
               <div class="my-4 subtitle-1 blue--text">{{ hotel.address }}</div>
@@ -69,6 +115,7 @@
 
             <v-card-text>
               <v-chip-group
+                v-model="selection"
                 active-class="deep-purple accent-4 white--text"
                 column
               >
@@ -83,17 +130,25 @@
             </v-card-text>
 
             <v-card-actions>
-              <div class="row">
-                <div class="col">
-                  <v-btn dark color="teal" @click="showhotel(hotel._id)">
-                    Reserve
-                  </v-btn>
-                </div>
-                <div class="col">
-                  <a :href="hotel.video_url" target="_blank">
-                    <v-btn color="primary" dark>watch video</v-btn>
-                  </a>
-                </div>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    dark
+                    color="teal"
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="showhotel(hotel._id)"
+                    >Reserve</v-btn
+                  >
+                </template>
+                <span>Reserve</span>
+              </v-tooltip>
+              <div>
+                <a :href="hotel.video_url" target="_blank">
+                  <v-btn color="primary" dark v-bind="attrs" v-on="on"
+                    >watch video</v-btn
+                  >
+                </a>
               </div>
             </v-card-actions>
             <v-container fluid>
@@ -125,75 +180,5 @@
 <style>
 .col {
   width: 25% !important;
-}
-</style>
-<script>
-import axios from "axios";
-export default {
-  name: "card",
-  methods: {
-    showhotel(id) {
-      this.$router.push(`/reservation/${id}`);
-    },
-  },
-  computed: {
-    filterHotels() {
-      return this.hotels.filter(
-        (e) =>
-          e.title.toLowerCase().includes(this.search.toLowerCase()) ||
-          e.address.toLowerCase().includes(this.search.toLowerCase())
-      );
-    },
-  },
-  async beforeMount() {
-    var hotels = await axios.get("http://localhost:5000/api/hotels");
-    this.hotels = hotels.data.hotels;
-    console.log("hotels", this.hotels);
-  },
-  data() {
-    return {
-      search: "",
-      hotels: [],
-      select: { room: "Single Room", price: 200 },
-      items: [
-        { room: "Single Room", price: 200 },
-        { room: "Double Room", price: 300 },
-      ],
-    };
-  },
-  components: {},
-};
-</script>
-<style scoped>
-.v-card {
-  transition: opacity 0.4s ease-in-out;
-}
-
-.v-card:not(.on-hover) {
-  opacity: 1;
-}
-.v-card--reveal {
-  align-items: center;
-  bottom: 0;
-  justify-content: center;
-  opacity: 0.3;
-  position: absolute;
-  width: 100%;
-}
-.search {
-  font-size: 12px;
-}
-.input {
-  box-sizing: content-box;
-  width: 85%;
-  margin: 10px;
-  padding: 20px;
-  border: rgb(159, 45, 45);
-  font: italic normal bold 16px / normal Arial, Helvetica, sans-serif;
-  color: rgb(178, 180, 30);
-  text-align: justify;
-  letter-spacing: 1px;
-  -webkit-transform: rotateY(0.5729577951308232deg);
-  transform: rotateY(0.5729577951308232deg);
 }
 </style>

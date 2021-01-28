@@ -1,6 +1,6 @@
 <template>
-  <v-footer class="footer" padless>
-    <v-card flat tile width="100%" class="black lighten-1 text-center">
+  <v-footer class="footer " padless >
+    <v-card flat tile width="100%" class="black  text-center">
       <div class="footer-content">
         <div class="about">
           <h1 class="Z">See Tunisia through our eyes</h1>
@@ -56,5 +56,8 @@ export default {
 .Z {
   font-size: 30px;
   color: rgb(135, 162, 212);
+}
+.v-sheet.v-footer {
+color: black !important;
 }
 </style>

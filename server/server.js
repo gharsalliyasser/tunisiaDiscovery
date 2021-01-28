@@ -36,7 +36,6 @@ app.use("/api/Car", CarRoutes);
 app.use("/api/hotels", HotelRoutes);
 app.use("/api/place", PlaceRoutes);
 app.use("/api/users", usersRoutes);
-
 //testing server activation on first run
 //  app.get('/', (req, res) =>{
 //      res.send('HEllo')

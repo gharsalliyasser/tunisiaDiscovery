@@ -35,6 +35,17 @@ router.post("/", upload.single("image_url"), async(req, res) => {
     }
 });
 
+router.get('/:id', async(req, res) => {
+    const { id } = req.params
+    try {
+        const oneHotel = await Hotel.findById(id);
+        if (!oneHotel) throw new Error('No hotel to display error !');
+        res.status(200).json(oneHotel);
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+});
+
 // GET request - get all hotels
 router.get("/", async(req, res) => {
     try {

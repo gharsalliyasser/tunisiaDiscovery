@@ -11,9 +11,9 @@
     <div class="app"></div>
     <router-view></router-view>
 
-    <v-footer>
+    <div>
       <Foot />
-    </v-footer>
+    </div>
   </v-app>
 </template>
 

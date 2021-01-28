@@ -17,7 +17,8 @@ import CarsPost from "./components/Cars/CarsPost";
 import card from './components/Hotels/Cards';
 import events from './components/events/events';
 import filter from './components/Hotels/filter';
-import Gallery from './components/places/Gallery'
+import Gallery from './components/places/Gallery';
+import reservation from './components/Hotels/reservation';
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -75,6 +76,10 @@ const router = new VueRouter({
         {
             path: '/filter',
             component: filter
+        },
+        {
+            path: '/reservation/:id',
+            component: reservation
         },
         {
             path: '/CarsPost',
