@@ -3,6 +3,14 @@
     <div id="wrapper"> 
     <div id="left">
       <h1>{{ hotels.title }}</h1>
+      <v-rating
+                  :value="hotels.stars"
+                  color="amber"
+                  dense
+                  half-increments
+                  readonly
+                  size="14"
+                ></v-rating>
       <h1 class="description">{{ hotels.description }}</h1>
     </div>
     <div id="right">
@@ -116,7 +124,6 @@ export default {
         userphone: this.userphone,
         startD: this.startD,
         endD: this.endD,
-        time: this.time,
         total: this.total,
       };
       this.snackbar = true;
@@ -125,10 +132,12 @@ export default {
         newPayment
       );
       if (!hotel.data.message) {
-        this.$store.commit("setHotel", hotel.data);
+        // this.$store.commit("setHotel", hotel.data);
         this.error = "";
         this.$router.push("/payment");
-      }
+      } else {
+          this.error = "Error try later"
+        }
     },
   },
 };
@@ -139,20 +148,21 @@ export default {
 }
 .description {
   font-size: 25px;
+  font:  bold 24px / normal "Garamond", Times, serif;
 }
 #wrapper {
   display: flex;
-  background-color:rgb(200, 222, 230)
+  background-color:rgba(0, 0, 0, 0.561)
 }
 
 #left {
   flex: 1 1 65%;
-  color: rgb(25, 24, 66)
+  color: white
 }
 
 #right {
   flex: 1 1 45%;
-  top: 100px;
+  /* top: 100px; */
   }
 #total {
   background-color: bisque;

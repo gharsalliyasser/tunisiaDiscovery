@@ -1,5 +1,19 @@
 <template>
   <v-container class="grey lighten-5 mb-6">
+    <createHotel v-if="apear"/>
+  <v-btn
+      v-if="userstatus === 'admin'"
+      class="mx-2"
+      dark
+      large
+      color="cyan"
+   @click="appearHotelCreate"
+    > Add Hotel
+      <v-icon dark>
+        mdi-pencil
+      </v-icon>
+    </v-btn>
+
     <div class="search-wrapper">
       <v-toolbar dark color="cyan">
         <v-toolbar-title>Search</v-toolbar-title>
@@ -88,6 +102,8 @@
                   <v-btn dark color="cyan" @click="showhotel(hotel._id)">
                     Reserve
                   </v-btn>
+                   <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" 
+                   @click="remove(hotel._id)">Delete</v-btn>
                 </div>
                 <div class="col">
                   <a :href="hotel.video_url" target="_blank">
@@ -128,13 +144,22 @@
 }
 </style>
 <script>
+import createHotel from "./createHotel.vue";
 import axios from "axios";
+const Cookie =require('js-cookie');
 export default {
   name: "card",
   methods: {
     showhotel(id) {
       this.$router.push(`/reservation/${id}`);
     },
+    appearHotelCreate(){
+      this.apear = !this.apear;
+    },
+    async remove(id){
+            await axios.delete(`http://localhost:5000/api/hotels/${id}`);
+            window.location.replace("/hotels");
+        }
   },
   computed: {
     filterHotels() {
@@ -159,9 +184,14 @@ export default {
         { room: "Single Room", price: 200 },
         { room: "Double Room", price: 300 },
       ],
+      apear : false,
+      userstatus:Cookie.get('status'),
     };
   },
-  components: {},
+  components: {
+    createHotel,
+  },
+
 };
 </script>
 <style scoped>

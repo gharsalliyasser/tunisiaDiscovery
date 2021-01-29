@@ -47,7 +47,7 @@ export default {
   methods:{
     logout(){
       Cookie.remove('name')
-      window.location.replace('/')
+      window.location.replace('/home')
     }
   }
 

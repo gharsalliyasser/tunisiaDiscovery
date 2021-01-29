@@ -51,6 +51,7 @@
             Cookie.set('name',res.data.user.name)
             Cookie.set('email',res.data.user.email)
             Cookie.set('number',res.data.user.number)
+            Cookie.set('status',res.data.user.status)
             localStorage.setItem('token', res.data.token);
             this.$router.push('/home');
           }

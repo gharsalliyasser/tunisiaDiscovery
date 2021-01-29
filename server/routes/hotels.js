@@ -1,38 +1,47 @@
 const router = require("express").Router();
 const Hotel = require("../models/hotelsdata");
-const cloudinary = require("../utils/cloudinary");
-const upload = require("../utils/multer");
+//const cloudinary = require("../utils/cloudinary");
+//const upload = require("../utils/multer");
 
-// POST request
-router.post("/", upload.single("image_url"), async(req, res) => {
-    try {
-        let hotel = new Hotel();
-        if (req.file) {
-            const result = await cloudinary.uploader.upload(req.file.path);
-            hotel.image_url = result.secure_url;
-        } else {
-            hotel.image_url = req.body.image_url || "";
-        }
-        hotel.title = req.body.title;
-        hotel.city = req.body.city;
-        hotel.address = req.body.address;
-        hotel.stars = req.body.stars;
-        hotel.description = req.body.description;
-        hotel.single_room = req.body.single_room;
-        hotel.double_room = req.body.double_room;
+// POST request by cloudinary
+// router.post("/", upload.single("image_url"), async(req, res) => {
+//     try {
+//         let hotel = new Hotel();
+//         if (req.file) {
+//             const result = await cloudinary.uploader.upload(req.file.path);
+//             hotel.image_url = result.secure_url;
+//         } else {
+//             hotel.image_url = req.body.image_url || "";
+//         }
+//         hotel.title = req.body.title;
+//         hotel.city = req.body.city;
+//         hotel.address = req.body.address;
+//         hotel.stars = req.body.stars;
+//         hotel.description = req.body.description;
+//         hotel.single_room = req.body.single_room;
+//         hotel.double_room = req.body.double_room;
 
-        await hotel.save();
+//         await hotel.save();
 
-        res.json({
-            success: true,
-            message: "Successfuly created a new hotel",
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
+//         res.json({
+//             success: true,
+//             message: "Successfuly created a new hotel",
+//         });
+//     } catch (error) {
+//         res.status(500).json({
+//             success: false,
+//             message: error.message,
+//         });
+//     }
+// });
+
+//------------ create a Hotel ------------------
+router.post("/create", async(req, res) => {
+    const hotel = req.body;
+    let hotelModel = new Hotel(hotel);
+    await hotelModel.save();
+    console.log(hotelModel)
+    res.json(hotelModel);
 });
 
 router.get('/:id', async(req, res) => {
@@ -60,6 +69,19 @@ router.get("/", async(req, res) => {
             success: false,
             message: error.message,
         });
+    }
+});
+
+//------------ delete a Hotel ------------------
+router.delete('/:id', async (req, res) =>{
+    try{
+        const { id } = req.params
+        const deleteHotel = await Hotel.findByIdAndDelete(id);
+        console.log(id)
+        if(!deleteHotel) throw new Error('Hotel deletion not done !');
+        res.status(200).json(deleteHotel);
+    } catch (err) {
+        res.status(500).json({message: err.message})
     }
 });
 

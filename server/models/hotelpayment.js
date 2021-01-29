@@ -20,8 +20,6 @@ const hotelPaymentSchema = new Schema({
   endD: {
     type: String,
   },
-  time: String,
-
   total: String,
 
   status: {
