@@ -1,12 +1,11 @@
 const { Router } = require("express");
-const PayCar = require("../models/PayCar");
+const hotelpayment = require("../models/hotelpayment");
 
 const router = Router();
 
-
 router.post('/', async(req, res) => {
     try {
-        const newPayment = new PayCar(req.body);
+        const newPayment = new hotelpayment(req.body);
             const Paycreate = await newPayment.save();
             if (!Paycreate) throw new Error('Pay creation opperation failed !');
             console.log(Paycreate)

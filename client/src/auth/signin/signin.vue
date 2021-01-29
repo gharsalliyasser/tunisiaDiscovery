@@ -32,22 +32,25 @@
   const Cookie =require('js-cookie')
  export default {
     name: "Signin",
-    data: () => ({
+    data() {
+    return {
       email: '',
       password: '',
       error: '',
-    }),
+    }},
     methods:{
      async signin() {
       const user = {
                 email: this.email,
                 password: this.password
       }
-     await axios.post('/api/users/signin', user)
+     await axios.post('http://localhost:5000/api/users/signin', user)
         .then(res => {
           //if successfull
           if (res.status === 200) {
             Cookie.set('name',res.data.user.name)
+            Cookie.set('email',res.data.user.email)
+            Cookie.set('number',res.data.user.number)
             localStorage.setItem('token', res.data.token);
             this.$router.push('/home');
           }

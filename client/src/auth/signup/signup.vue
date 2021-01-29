@@ -85,7 +85,8 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
-  data: () => ({
+  data() {
+    return {
     name: "",
     email: "",
     number: "",
@@ -101,7 +102,7 @@ export default {
     ],
     showPassword: false,
     error: "",
-  }),
+  }},
   methods: {
     async submit() {
       let newUser = {
@@ -112,7 +113,7 @@ export default {
         password: this.password,
       };
       await axios
-        .post("/api/users/signup", newUser)
+        .post("http://localhost:5000/api/users/signup", newUser)
         .then((newUser) => {
           console.log(newUser);
           this.error = "";

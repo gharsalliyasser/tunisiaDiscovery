@@ -1,7 +1,7 @@
 <template>
   <v-container class="grey lighten-5 mb-6">
     <div class="search-wrapper">
-      <v-toolbar dark color="teal">
+      <v-toolbar dark color="cyan">
         <v-toolbar-title>Search</v-toolbar-title>
         <input
           class="input "
@@ -85,7 +85,7 @@
             <v-card-actions>
               <div class="row">
                 <div class="col">
-                  <v-btn dark color="teal" @click="showhotel(hotel._id)">
+                  <v-btn dark color="cyan" @click="showhotel(hotel._id)">
                     Reserve
                   </v-btn>
                 </div>
