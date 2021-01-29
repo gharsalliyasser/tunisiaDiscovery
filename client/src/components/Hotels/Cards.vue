@@ -188,9 +188,9 @@ export default {
   width: 85%;
   margin: 10px;
   padding: 20px;
-  border: rgb(159, 45, 45);
-  font: italic normal bold 16px / normal Arial, Helvetica, sans-serif;
-  color: rgb(178, 180, 30);
+  /* border: rgb(159, 45, 45); */
+  font:  bold 19px / normal "Garamond", Times, serif;
+  color:white;
   text-align: justify;
   letter-spacing: 1px;
   -webkit-transform: rotateY(0.5729577951308232deg);

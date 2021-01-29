@@ -1,61 +1,52 @@
 <template>
   <v-container>
-    <div>
-      <h1 class="title">{{ hotels.title }}</h1>
+    <div id="wrapper"> 
+    <div id="left">
+      <h1>{{ hotels.title }}</h1>
+      <h1 class="description">{{ hotels.description }}</h1>
+    </div>
+    <div id="right">
       <img height="450" :src="hotels.image_url" />
+    </div>
     </div>
     <v-container fluid white>
       <v-row dense>
         <v-col>
-          <v-text-field v-model="startD" type="date" label="Arrival Date">
-          </v-text-field>
-          <v-text-field
-            v-model="endD"
-            type="date"
-            label="Departure Date"
-            @change="BetweenDates"
-          >
-          </v-text-field>
-          <v-container
-    class="px-0"
-    fluid
-  >
-    <v-checkbox
-      v-model="checkbox1"
-      id="checkbox1"
-      @click="verifyCheck1"
-      :label="`Single Room: ${hotels.single_room}`"
-    ></v-checkbox>
-    <v-checkbox
-      v-model="checkbox2"
-      id="checkbox2"
-       @click="verifyCheck2"
-      :label="`Double Room: ${hotels.double_room}`"
-    ></v-checkbox>
-  </v-container>
+            <v-checkbox
+              v-model="checkbox1"
+              id="checkbox1"
+              @click="verifyCheck1"
+              :label="`Single Room: ${hotels.single_room}`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="checkbox2"
+              id="checkbox2"
+              @click="verifyCheck2"
+              :label="`Double Room: ${hotels.double_room}`"
+            ></v-checkbox>
+          <v-text-field v-model="startD" type="date" label="Arrival Date"></v-text-field>
+          <v-text-field v-model="endD" type="date" label="Departure Date" @change="BetweenDates"></v-text-field>
+          <v-container class="px-0" fluid>
+          </v-container>
           <!-- <v-select
             v-model="time"
             :items="items"
             label="Time of taken and delivered"
             dense
-          ></v-select> -->
+          ></v-select>-->
         </v-col>
-      </v-row>
-    Total: <input type="text" v-model="total" disabled /> DT
+      </v-row>Total
+      <input id="total" type="text" v-model="total" disabled />
+      TND
     </v-container>
-   
+
     <template>
       <div class="text-center ma-2">
-        <v-btn color="cyan  darken-2" @click="paymentSend" >
-          Reserve
-        </v-btn>
+        <v-btn color="cyan  darken-2" @click="paymentSend">Reserve</v-btn>
         <v-snackbar v-model="snackbar">
           {{ text }}
-
           <template v-slot:action="{ attrs }">
-            <v-btn color="cyan  darken-2" text v-bind="attrs" @click="snackbar = false">
-              Close
-            </v-btn>
+            <v-btn color="cyan  darken-2" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
           </template>
         </v-snackbar>
       </div>
@@ -80,25 +71,23 @@ export default {
       text: `Added to cart`,
       checkbox1: false,
       checkbox2: false,
-      
     };
   },
   async mounted() {
     const id = this.$route.params.id;
-    console.log(id);
     const show = await axios.get(`http://localhost:5000/api/hotels/${id}`);
-    console.log(show.data);
     this.hotels = show.data;
   },
   methods: {
     verifyCheck1() {
-if (this.checkbox1){
-  this.checkbox2 = false
-}},
-verifyCheck2() {
-if (this.checkbox2){
-  this.checkbox1 = false
-}
+      if (this.checkbox1) {
+        this.checkbox2 = false;
+      }
+    },
+    verifyCheck2() {
+      if (this.checkbox2) {
+        this.checkbox1 = false;
+      }
     },
     BetweenDates() {
       const startDate = new Date(this.startD);
@@ -108,21 +97,14 @@ if (this.checkbox2){
       while (endDate > startDate) {
         dayCount++;
         startDate.setDate(startDate.getDate() + 1);
-      } 
-      if (this.checkbox1) 
-      {
+      }
+      if (this.checkbox1) {
         this.total = dayCount * this.hotels.single_room;
-        this.checkbox1 = false;
-      this.checkbox2 = false;
       } else {
         this.total = dayCount * this.hotels.double_room;
-      this.checkbox1 = false;
-      this.checkbox2 = false;
-
       }
       console.log(this.total);
       return dayCount;
-
     },
     async paymentSend() {
       console.log("Cookie.get()username", Cookie.get("name"));
@@ -154,5 +136,25 @@ if (this.checkbox2){
 <style>
 .container {
   position: relative;
+}
+.description {
+  font-size: 25px;
+}
+#wrapper {
+  display: flex;
+  background-color:rgb(200, 222, 230)
+}
+
+#left {
+  flex: 1 1 65%;
+  color: rgb(25, 24, 66)
+}
+
+#right {
+  flex: 1 1 45%;
+  top: 100px;
+  }
+#total {
+  background-color: bisque;
 }
 </style>
