@@ -1,37 +1,47 @@
 <template>
   <v-app>
-    <v-content>
-      <v-card width="800" height="320" class="mx-auto mt-9">
+      <v-card id="card" width="800" height="460" class="mx-auto mt-9">
         <v-card-title>Registration Form</v-card-title>
-        <validation-observer ref="observer" v-slot="{ invalid }">
-          <form @submit.prevent="submit">
-            <validation-provider v-slot="{ errors }" name="Name" rules="required|max:20">
-              <v-text-field v-model="name" :error-messages="errors" label="Name" required></v-text-field>
-            </validation-provider>
-            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
-              <v-text-field v-model="email" :error-messages="errors" label="E-mail" required></v-text-field>
-            </validation-provider>
-            <validation-provider
-              v-slot="{ errors }"
-              name="phoneNumber"
-              :rules="{
+          <v-form 
+          ref="form"
+    v-model="valid"
+    lazy-validation
+          @submit.prevent="submit">
+            <v-text-field
+      v-model="name"
+      :rules="nameRules"
+      label="Full Name"
+      required
+    ></v-text-field>
+             <v-text-field
+      v-model="email"
+      :rules="emailRules"
+      label="E-mail"
+      required
+    ></v-text-field>
+             <validation-provider
+        v-slot="{ errors }"
+        name="phoneNumber"
+        :rules="{
           required: true,
           digits: 8,
-          regex: '^(21|22|24|26|53|52|54|55|52|97|98|99)\\d{5}$'
         }"
-            >
-              <v-text-field v-model="number" :error-messages="errors" label="Phone Number" required></v-text-field>
-            </validation-provider>
-            <validation-provider v-slot="{ errors }" name="select" rules="required">
-              <v-select
-                v-model="select"
-                :items="items"
-                :error-messages="errors"
-                label="Select"
-                data-vv-name="select"
-                required
-              ></v-select>
-            </validation-provider>
+      >
+        <v-text-field
+          v-model="number"
+          :counter="8"
+          :error-messages="errors"
+          label="Phone Number"
+          required
+        ></v-text-field>
+      </validation-provider>
+            <v-select
+      v-model="select"
+      :items="items"
+      :rules="[v => !!v || 'Country of origin is required']"
+      label="Country of origin"
+      required
+    ></v-select>
             <v-text-field
               label="Password"
               :type="showPassword ? 'text' : 'password'"
@@ -44,17 +54,15 @@
             ></v-text-field>
             <v-btn class="mr-4" type="submit" :disabled="invalid">Submit</v-btn>
             {{ error}}
-          </form>
-        </validation-observer>
+            <v-btn color="error" class="mr-4" @click="reset">Reset Form</v-btn>
+          </v-form>
       </v-card>
-    </v-content>
   </v-app>
 </template>
 <script>
 import { required, digits, email, max, regex } from "vee-validate/dist/rules";
 import {
   extend,
-  ValidationObserver,
   ValidationProvider,
   setInteractionMode,
 } from "vee-validate";
@@ -83,27 +91,39 @@ extend("email", {
 export default {
   components: {
     ValidationProvider,
-    ValidationObserver,
+    // ValidationObserver,
   },
   data() {
     return {
-    name: "",
-    email: "",
-    number: "",
-    select: null,
-    items: ["France", "Germany", "Italia", "Russia"],
-    password: "",
-    passwordRules: [
-      ($v) => !!$v || "Password is required",
-      ($v) => ($v && $v.length >= 8) || "Password must have 8+ characters",
-      ($v) => /(?=.*[A-Z])/.test($v) || "Must have one uppercase character",
-      ($v) => /(?=.*\d)/.test($v) || "Must have one number",
-      ($v) => /([!@$%])/.test($v) || "Must have one special character [!@#$%]",
-    ],
-    showPassword: false,
-    error: "",
-  }},
+      name: "",
+      nameRules: [
+        v => !!v || 'Name is required',
+      ],
+      email: "",
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      number: "",
+      select: null,
+      items: ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"],
+      password: "",
+      passwordRules: [
+        ($v) => !!$v || "Password is required",
+        ($v) => ($v && $v.length >= 8) || "Password must have 8+ characters",
+        ($v) => /(?=.*[A-Z])/.test($v) || "Must have one uppercase character",
+        ($v) => /(?=.*\d)/.test($v) || "Must have one number",
+        ($v) =>
+          /([!@$%])/.test($v) || "Must have one special character [!@#$%]",
+      ],
+      showPassword: false,
+      error: "",
+    };
+  },
   methods: {
+    reset () {
+        this.$refs.form.reset()
+      },
     async submit() {
       let newUser = {
         name: this.name,
@@ -128,3 +148,8 @@ export default {
   },
 };
 </script>
+<style>
+#card {
+   background-color:rgba(0, 0, 0, 0.171)
+}
+</style>

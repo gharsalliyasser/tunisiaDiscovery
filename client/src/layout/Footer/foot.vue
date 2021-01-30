@@ -1,8 +1,8 @@
 <template>
   <v-footer class="footer " padless >
     <v-card flat tile width="100%" class="black  text-center">
-      <div class="footer-content">
-        <div class="about">
+      <div id="wrapper" class="footer-content">
+        <div id="left" class="about">
           <h1 class="Z">See Tunisia through our eyes</h1>
           <p class="W">
             Completely renovated in 2014, endowed with a unique charm that of a green garden trimmed with palm trees and various plants as well as a magnificent sandy beach to which there is a direct access, Hammamet Regency Hotel provides well-being and relaxation.
@@ -12,14 +12,17 @@
           </p>
         </div>
         <!-- <v-divider></v-divider> -->
-        <div class="contact">
+        <div id="right" class="contact">
           <span class="X">
             <v-icon class="a" large color="white darken-2">mdi-phone</v-icon>&nbsp; Phone: (216) 22 22 22 22
           </span>
+        </div>
+        <div id="right" class="contact">
           <span class="X">
             <v-icon large color="white darken-2">mdi-mail</v-icon>&nbsp;Mail: contact@tunisia.com
           </span>
-        </div>
+                </div>
+
       </div>
       <v-card-text class="white--text">
         {{ new Date().getFullYear() }} —
@@ -46,18 +49,27 @@ export default {
 </script>
 <style scoped>
 .X {
-  font-size: 28px;
-  color: rgb(190, 198, 212);
+  font-size: 25px;
+  color: rgba(22, 184, 199, 0.7);
 }
 .W {
-  font-size: 21px;
-  color: rgb(104, 154, 212);
+  font-size: 19px;
+  color:rgba(22, 184, 199, 0.7);
 }
 .Z {
   font-size: 30px;
-  color: rgb(135, 162, 212);
+  color:rgba(22, 184, 199, 0.7);
 }
 .v-sheet.v-footer {
 color: black !important;
 }
+#left {
+  flex: 1 1 45%;
+  color: white
+}
+
+#right {
+  flex: 1 1 45%;
+  /* top: 100px; */
+  }
 </style>

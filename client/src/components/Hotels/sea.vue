@@ -1,21 +1,61 @@
-const { Router } = require("express");
-const PayCar = require("../models/PayCar");
+<template>
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="name"
+      :counter="10"
+      :rules="nameRules"
+      label="Name"
+      required
+    ></v-text-field>
 
-const router = Router();
+    <v-text-field
+      v-model="email"
+      :rules="emailRules"
+      label="E-mail"
+      required
+    ></v-text-field>
 
+    <v-select
+      v-model="select"
+      :items="items"
+      :rules="[v => !!v || 'Item is required']"
+      label="Item"
+      required
+    ></v-select>
 
-router.post('/', async(req, res) => {
-    try {
-        const newPayment = new PayCar(req.body);
-            const Paycreate = await newPayment.save();
-            if (!Paycreate) throw new Error('Pay creation opperation failed !');
-            console.log(Paycreate)
-            res.status(200).json(Paycreate);
-        } catch (err) {
-            console.log(err)
-            res.status(500).json({ message: err.message })
-        }
-});
+    <v-checkbox
+      v-model="checkbox"
+      :rules="[v => !!v || 'You must agree to continue!']"
+      label="Do you agree?"
+      required
+    ></v-checkbox>
 
-//------------ export module ---------------
-module.exports = router;
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="validate"
+    >
+      Validate
+    </v-btn>
+
+    <v-btn
+      color="error"
+      class="mr-4"
+      @click="reset"
+    >
+      Reset Form
+    </v-btn>
+
+    <v-btn
+      color="warning"
+      @click="resetValidation"
+    >
+      Reset Validation
+    </v-btn>
+  </v-form>
+</template>
