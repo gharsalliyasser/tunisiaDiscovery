@@ -22,9 +22,9 @@
 <br>
            <h1 class="sub"> or choose category</h1>
             <select class="select-css" v-model="select" @change="filtercategory"> choose category
-            <option>Coastal</option>
-            <option>desert</option>
-            <option>Archaeological</option>
+            <option class="sub">Coastal</option>
+            <option class="sub ">desert</option>
+            <option class="sub">Archaeological</option>
              </select>
 <br>
 
