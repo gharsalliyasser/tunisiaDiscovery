@@ -9,7 +9,6 @@ import footer from "./layout/Footer/footer";
 import signin from './auth/signin/signin';
 import signup from './auth/signup/signup';
 // others
-import  yasser from './components/places/yasser'
 import home from './components/home/home';
 import about from './components/views/about';
 import contact from './components/views/contact';
@@ -92,10 +91,7 @@ const router = new VueRouter({
             path:'/map',
             component:GoogleMap
         },
-        {
-            path:'/yasser',
-            component:yasser
-        },
+      
       
     ],
     mode: 'history'
