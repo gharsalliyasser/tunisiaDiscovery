@@ -13,6 +13,11 @@ const placesSchema = new Schema({
   extraimage4:String,
   extraimage5:String,
   extraimage6:String,
+  // showParagraph:String,
+  // withPopup:String,
+  // withTooltip:String,
+  // currentZoom:String,
+  // currentCenter:String
 
 })
 

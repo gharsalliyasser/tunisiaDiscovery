@@ -1,166 +1,152 @@
+
 <template>
   <v-container fluid>
+<createplace v-if="apear"/>
+  <v-btn
+      v-if="userstatus === 'admin'"
+      class="mx-2"
+      dark
+      large
+      color="cyan"
+   @click="apearcarcreate"
+    > create car
+      <v-icon dark>
+        mdi-pencil
+      </v-icon>
+    </v-btn>
+<div>
     <div class="search-wrapper">
       <label class="yasser">𝔖𝔢𝔞𝔯𝔠𝔥 y𝔬𝔲𝔯 𝔡𝔢𝔰𝔱𝔦𝔫𝔞𝔱𝔦𝔬𝔫</label>
-      <input class ="yas" type="text" v-model="search" placeholder="Search title.."  @input="filterPlaces"/>
-
-
-       <select class="drop" v-model="select"  @change="filtercategory">
-    <option value="Coastal">Coastal</option>
-    <option value="desert">desert</option>
-    <option value="Archaeological">Archaeological</option>
-  category</select>
-
-<!-- 
+      <img  class="yb" src="https://st3.depositphotos.com/27893600/33298/v/1600/depositphotos_332980766-stock-illustration-mark-position-location-pointer-map.jpg" />
+      <input class ="yas" type="text" v-model="search" placeholder="Search title.."  @input="filterPlaces"/>     
 
 
 
-<section class="carousel" aria-label="Gallery">
-  <ol class="carousel__viewport">
-    <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper">
-        <a href="https://www.leaders.com.tn/uploads/content/thumbnails/156292126689_content.jpg"
-           class="carousel__prev">Go to last slide</a>
-        <a href="https://www.leaders.com.tn/uploads/content/thumbnails/20140912172552__jer.jpg"
-           class="carousel__next">Go to next slide</a>
-      </div>
-    </li>
-    <li id="carousel__slide2"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide1"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide3"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide3"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide2"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide4"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide4"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide3"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide1"
-         class="carousel__next">Go to first slide</a>
-    </li>
-  </ol>
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list">
-      <li class="carousel__navigation-item">
-        <a href="https://carthagemagazine.com/wp-content/uploads/2020/09/Sidi-Bou-Said-La-Gulett-Tunisia-White-and-blue-town.jpg"
-           class="carousel__navigation-button">Go to slide 1</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide2"
-           class="carousel__navigation-button">Go to slide 2</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide3"
-           class="carousel__navigation-button">Go to slide 3</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide4"
-           class="carousel__navigation-button">Go to slide 4</a>
-      </li>
-    </ol>
-  </aside>
-</section> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-    <div>
+  <select class="select-css" v-model="select"  @change="filtercategory">category
+	<option>Coastal</option>
+	<option>desert</option>
+	<option>Archaeological</option>
+</select>
+ </div>
+  <div>
     </div>
     <v-row justify="space-around">
-      <v-col v-for="place in places" :key="place._id" cols="5">
-        <div class="subheading" >
-          <h2 >{{place.name}}</h2>
-        </div>
-        <container class="frame">
-        <v-img  class="img" :src="place.imagelink" ></v-img>            
+      <!-- <div class="subheading" >
+          
+          <h2 class="name">{{place.name}}</h2>
+        </div>  -->
+
+
+
+
+
+
+
+        <!-- <container class="frame">
+        <v-img :src ="place.imagelink" ></v-img>            
         </container>
         <br >
-        <div class="oo">
+         <div class="oo"> 
         {{place.description}}
-        </div>
+        </div> 
         <div class="text-center">
           <div class="my-2">
-    
 
-<div id="app">
-  <v-app id="inspire">
-    <div class="text-center">
-      <v-btn   rounded
-        color="primary"
-        darktext @click="showplaces(place._id)"
 
-      
-      >
+    <v-btn  class="btn"  rounded  
+        darktext @click="showplaces(place._id)">
         visit
-      </v-btn >
-    </div>
-  </v-app>
-</div>
+      </v-btn > 
+           </div> 
+        </div>   -->
+        
+     
+      <v-col v-for="place in places" :key="place._id" cols="5">
+  <v-card
+    class="mx-auto"
+    max-width="650"
+  >
+    <v-img :src ="place.imagelink" height="500px" 
+    ></v-img>
+
+    <v-card-title>
+ <h2 class="name">{{place.name}}</h2>    </v-card-title>
 
 
 
+    <v-card-actions>
+      <v-btn @click="showplaces(place._id)"
+        color="orange lighten-2"
+        text
+      >
+        Explore
+      </v-btn>
+
+      <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" @click="remove(place._id)">Delete</v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+           {{place.description}}
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
 
 
-
-
-
-
-
-
-                
-
-
-          </div>
-        </div>
       </v-col>
     </v-row>
+    </div>
   </v-container>
 </template>
+
       
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import createplace from "./createplace";
+const Cookie =require('js-cookie');
 export default {
   name: "Gallery",
   data() {
+    
     return {
+
       search: '',
       select:'',
       places: [],
+            show: false,
+      apear : false,
+      userstatus:Cookie.get('status'),
+
 
     };
   },
- 
+
+  components: {
+    createplace,
+  },
+
   async beforeMount(){
     var places = await axios.get('http://localhost:5000/api/place')
     this.places = places.data
   },
   methods:{
+    
+    switch(){
+     this.$router.push({path:'map'})
+    },
     async filterPlaces(){
       var places = await axios.post('http://localhost:5000/api/place/findPlace',{name:this.search})
       this.places = places.data
@@ -174,18 +160,41 @@ export default {
     },
        showplaces(id){
       this.$router.push(`/showplaces/${id}`)
-    }
+    },
     
+    apearcarcreate(){
+      this.apear = !this.apear;
+    },
+    async remove(id){
+            await axios.delete(`http://localhost:5000/api/place/${id}`);
+            window.location.replace("/Gallery");
+        }
 
   }
   }
 
  
 </script>
+
 <style  scoped>
+
 .yasser{
   font-size: 80px;
 }
+
+.pic{
+  width: 530px;
+  height: 530px;
+    border-radius: 10%;
+
+
+}
+.name{
+  font-family:s;
+  font-size: 60px;
+
+}
+
 
 
 
@@ -222,91 +231,11 @@ export default {
   transition: letter-spacing 200ms cubic-bezier(0.795, 0.05, 0.175, 1);
   -webkit-transform: rotateY(0.5729577951308232deg)   ;
   transform: rotateY(0.5729577951308232deg)   ;
+  
 }
-/* .drop{
-  ransition:All 1s ease;
--webkit-transition:All 1s ease;
--moz-transition:All 1s ease;
--o-transition:All 1s ease;
-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
--webkit-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
--moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
--o-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
--ms-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
-text-shadow:33px 14px 0px #000000;
--moz-box-shadow: 75px -43px 14px #000000;
--webkit-box-shadow: 75px -43px 14px #000000;
-box-shadow: 75px -43px 14px #000000;
-} */
-
-/* .drop{
-  size: 1000px;
-border:dashed 0px #000000;
--moz-border-radius-topleft: 100px;
--moz-border-radius-topright:0px;
--moz-border-radius-bottomleft:0px;
--moz-border-radius-bottomright:75px;
--webkit-border-top-left-radius:75px;
--webkit-border-top-right-radius:0px;
--webkit-border-bottom-left-radius:0px;
--webkit-border-bottom-right-radius:75px;
-border-top-left-radius:75px;
-border-top-right-radius:0px;
-border-bottom-left-radius:0px;
-border-bottom-right-radius:75px;
-background:-webkit-gradient(linear, 80% 20%, 10% 21%, from(#12CFFF), to(#FF4E28));
-
- } */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* .frame{
-    
-  background-color:#ddc;
-  border:solid 5vmin #eee;
-  border-bottom-color:#fff;
-  border-left-color:#eee;
-  border-radius:2px;
-  border-right-color:#eee;
-  border-top-color:#ddd;
-  box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
-  display:inline-block;
-  height:70vh;
-  position:relative;
-  text-align:center;
-  }
-
-  .img{
-    
-  border:solid 2px;
-  border-bottom-color:#ffe;
-  border-left-color:#eed;
-  border-right-color:#eed;
-  border-top-color:#ccb;
-  max-height:100%;
-  max-width:60%;
-
-
-  }
-
-.html {
-  background-image:linear-gradient(#eee, #aaa);
-  height:100%;
-} */
- </style>
+.yb{
+  width:150px;
+  height: 130px;
+    border-radius: 200%;
+}
+     </style>

@@ -48,6 +48,6 @@
 <script>
 export default {
   name: "footer",
-  data: () => ({}),
+  data: () => {},
 };
 </script>

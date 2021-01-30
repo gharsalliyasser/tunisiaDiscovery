@@ -4,11 +4,12 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 // layout
 import navbar from "./layout/Navbar/navbar";
-import f from "./layout/Footer/f";
+import footer from "./layout/Footer/footer";
 // auth
 import signin from './auth/signin/signin';
 import signup from './auth/signup/signup';
 // others
+import  yasser from './components/places/yasser'
 import home from './components/home/home';
 import about from './components/views/about';
 import contact from './components/views/contact';
@@ -18,9 +19,10 @@ import card from './components/Hotels/Cards';
 import events from './components/events/events';
 import filter from './components/Hotels/filter';
 import Gallery from './components/places/Gallery';
-import reservation from './components/Hotels/reservation';
+import showplaces from'./components/places/showplaces'
+import GoogleMap from './components/places/map';
+import 'leaflet/dist/leaflet.css';
 
-import 'vuetify/dist/vuetify.min.css'
 
 Vue.component('navbar', navbar)
 Vue.use(VueRouter)
@@ -31,7 +33,8 @@ Vue.config.productionTip = false
 const router = new VueRouter({
     routes: [{
             path: '/home',
-            component: home
+            component: home,
+
         },
         {
             path: '/about',
@@ -46,8 +49,8 @@ const router = new VueRouter({
             component: navbar
         },
         {
-            path: '/f',
-            component: f
+            path: '/footer',
+            component: footer
         },
         {
             path: '/signup',
@@ -74,17 +77,26 @@ const router = new VueRouter({
             component: Gallery
         },
         {
-            path: '/filter',
+            path: '/hotels/filter',
             component: filter
-        },
-        {
-            path: '/reservation/:id',
-            component: reservation
         },
         {
             path: '/CarsPost',
             component: CarsPost
         },
+        {
+            path:'/showplaces/:idplace',
+            component:showplaces
+        },
+        {
+            path:'/map',
+            component:GoogleMap
+        },
+        {
+            path:'/yasser',
+            component:yasser
+        },
+      
     ],
     mode: 'history'
 })
@@ -94,3 +106,6 @@ new Vue({
     vuetify,
     render: h => h(App)
 }).$mount('#app')
+
+
+

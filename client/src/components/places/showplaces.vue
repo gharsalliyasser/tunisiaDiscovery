@@ -1,44 +1,32 @@
-<template>
+ <template>
   <v-container fluid>
     <div class="search-wrapper">
-
-        <div>
-          <h2 >{{places.name}}</h2>
-        </div>
+    <div> <h2 >{{places.name}}</h2> </div>
+    <br>
       <br>
-
         <br>
-
         <br>
-         <v-row class="row-1">
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img
-        :src= places.extraimage4
-        gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-      ></v-img>
-    </v-col>
-
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img   :src= places.extraimage5
->
-        <div class="fill-height bottom-gradient"></div>
-      </v-img>
-    </v-col>
-
-    <v-col
-      cols="6"
+       <v-row class="row-1">
+         <v-col cols="6" sm="4" >
+         <v-img class="showimg"
+         :src= places.extraimage4
+         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+          ></v-img>
+        </v-col>
+         <v-col cols="6" sm="4" >
+          <v-img  class="showimg" :src= places.extraimage5>
+             <div class="fill-height bottom-gradient"></div>
+               </v-img>
+             </v-col>
+            <v-col
+             cols="6"
       sm="4"
     >
       <v-img         :src= places.extraimage6
 >
         <div class="fill-height repeating-gradient"></div>
       </v-img>
+      
    
 
 
@@ -68,6 +56,10 @@
 <div>         
      <embed class="video" type="video/webm" :src="places.videolink" width="1000" height="600">
 </div>
+<br>
+<br>
+<br>
+          <v-btn  class="btn"  rounded darktext @click ='Switch' > see map</v-btn>
         <br>
 
         <br>
@@ -79,7 +71,7 @@
       cols="6"
       sm="4"
     >
-      <v-img
+      <v-img class="showimg"
         :src= places.extraimage1
         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       ></v-img>
@@ -89,7 +81,7 @@
       cols="6"
       sm="4"
     >
-      <v-img   :src= places.extraimage2
+      <v-img  class="showimg" :src= places.extraimage2
 >
         <div class="fill-height bottom-gradient"></div>
       </v-img>
@@ -114,6 +106,7 @@
        </div>
  </v-col>
   </v-row>
+  
      
     </div>
   </v-container>
@@ -135,7 +128,12 @@ export default {
        const show = await axios.get(`http://localhost:5000/api/place/${id}`);
        console.log(show.data)
        this.places = show.data
-    }
+    },
+     methods:{
+    Switch(){
+     this.$router.push('/map')
+    },
+     }
        
 }
 </script>
@@ -147,5 +145,16 @@ export default {
 .oo{
     font-family:cursive;
     font-size: 20px;
+}
+.showimg{
+  width: 1000px;
+
+}
+.btn{
+  width: 80px;
+color: cadetblue;  border-radius: 60%;
+
+
+
 }
 </style>

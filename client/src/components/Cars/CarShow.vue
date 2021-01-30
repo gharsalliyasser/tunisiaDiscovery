@@ -13,7 +13,9 @@
               <div>{{ cars.text }}</div>
             </v-card-text>
             <v-card-actions>
+              <router-link>
                 <v-btn color="primary" text>Reserve</v-btn>
+              </router-link>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -29,18 +31,17 @@ import axios from "axios";
 export default {
     
     name: "CarShow",
-     data: () => ({
-       cars:null,
-}),
-    async mounted(){
-       const id= this.$route.params.idcars
-       console.log(id)
-       const show = await axios.get(`http://localhost:5000/api/Car/${id}`);
-       console.log(show.data)
-       this.cars = show.data
+     data() {
+      return {
+         cars: null
+      }
 
-
-    }
+        //mouting data from cloud server
+        const id = this.$route.params.idcars;
+        const cars = await axios.get(`/api/Car/${id}`);
+        this.cars = cars.data;
+    },
+    
        
 }
 </script>
