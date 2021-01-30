@@ -187,7 +187,7 @@ export default {
         extraimage6:"",
     }},
     methods:{
-      async createcar(){
+      async createplace(){
           const newplace = await axios.post('http://localhost:5000/api/place/createPlace', {
               name : this.name,
               description:this.description,
